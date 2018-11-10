@@ -27,6 +27,8 @@
 </div>
 </body>
 </html>
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/bootstrap/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
 <script src="/bootstrap-table/bootstrap-table.js"></script>
 <script src="/bootstrap-table/bootstrap-table-locale-all.js"></script>
 <script src="/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
@@ -35,7 +37,7 @@
 <script type="text/javascript">
     $(function () {
         var data="";
-        var obj={"mobile":"13055555555"};
+        var obj={};
             $.ajax({
                 async: false,
                 type: "POST",
@@ -61,9 +63,10 @@
             //sortOrder: "desc",
             sidePagination: "client",
             uniqueId: "id",                     //每一行的唯一标识，一般为主键列
-            pageSize: 10,
+            pageSize: 20,
             pageNumber: 1,
-            pageList: "[10, 25, 50, 100, All]",
+            pageList: "[10, 25, 50, 100]",
+            smartDisplay:false,
             showToggle: true,
             showRefresh: true,
             showColumns: true,
@@ -75,7 +78,8 @@
             },{
                 field: 'id',
                 title: '客户id',
-                switchable: true
+                switchable: true,
+                sortable: true //排序
             }, {
                 field: 'memberId',
                 title: '会员编号',
@@ -108,7 +112,7 @@
                 field: 'createTime',
                 title: '创建时间',
                 switchable: true,
-                sortable: true //
+                sortable: true //排序
             }, {
                 field: 'lastUpdateTime',
                 title: '最后修改时间',
