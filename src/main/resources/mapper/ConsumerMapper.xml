@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wgh.springboot.mapper.ConsumerMapper">
+    <select id="seletcConsumer" parameterType="java.util.Map" resultType="com.wgh.springboot.domain.Consumer">
+        select * from  consumer_info
+        where 1=1
+        <if test="dto !=null">
+
+            <if test="dto.id != null and dto.id != ''">
+                and id =#{dto.id}
+            </if>
+            <if test="dto.memberId != null and dto.memberId != ''">
+                and memberId =#{dto.memberId}
+            </if>
+            <if test="dto.name != null and dto.name != ''">
+                and name =#{dto.name}
+            </if>
+            <if test="dto.idCard != null and dto.idCard != ''">
+                and idCard =#{dto.idCard}
+            </if>
+            <if test="dto.telephone != null and dto.telephone != ''">
+                and telephone =#{dto.telephone}
+            </if>
+            <if test="dto.mobile != null and dto.mobile != ''">
+                and mobile =#{dto.mobile}
+            </if>
+            <if test="dto.address != null and dto.address != ''">
+                and address =#{dto.address}
+            </if>
+            <if test="dto.createTime != null and dto.createTime != ''">
+                and createTime =#{dto.createTime}
+            </if>
+        </if>
+    </select>
+</mapper>

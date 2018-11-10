@@ -1,0 +1,27 @@
+body{
+    margin: auto;
+}
+#loginForm{
+    margin: auto;
+    background-color: darkgray;
+    height: 100px;
+    width: 500px;
+    margin: auto;
+}
+#login_div{
+    margin: auto;
+    background-color: silver;
+    height: 300px;
+    width: 500px;
+}
+input{
+    line-height: 30px;
+    width: 300px;
+    border-radius: 10px;
+}
+#login_button{
+    line-height: 20px;
+    width: 80px;
+    border-radius: 5px;
+    background-color: silver;
+}

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>主页面</title>
+</head>
+<body style="height: 100%;width:100%;position:fixed;">
+
+
+<div >
+    <!--头部菜单 -->
+    <div style="height: 6%; border-bottom: solid 1px silver">
+        <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="height: 6%;">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">泽亮药房</a>
+                </div>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#"><span  class="glyphicon glyphicon-user"></span>&nbsp;<span id="userName"></span></a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> 退出</a></li>
+                </ul>
+            </div>
+        </nav>
+
+    </div>
+    <!-- 头部菜单end-->
+    <div style="margin-top: 1px">
+        <!-- 左侧导航栏-->
+        <!--<div id="navigationBar" style="height:100%;width: 10%;position: absolute;left: 0;top: 6%;">
+            <ul class="nav nav-pills nav-stacked text-center" style="overflow: scroll ;height: 100% ">
+                <li class="active "><a href="#">客户信息</a></li>
+                <li><a href="#">客户流水</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">11</a></li>
+                <li><a href="#">22</a></li>
+                <li><a href="#">33</a></li>
+                <li><a href="#">44</a></li>
+                <li><a href="#">111</a></li>
+                <li><a href="#">222</a></li>
+                <li><a href="#">333</a></li>
+                <li><a href="#">444</a></li>
+                <li><a href="#">2222</a></li>
+                <li><a href="#">3333</a></li>
+                <li><a href="#">4444</a></li>
+                <li><a href="#">11111</a></li>
+                <li><a href="#">22222</a></li>
+                <li><a href="#">33333</a></li>
+                <li><a href="#">111111</a></li>
+                <li><a href="#">222222</a></li>
+                <li><a href="#">333333</a></li>
+            </ul>
+        </div>
+        &lt;!&ndash; 左侧导航栏end&ndash;&gt;
+
+        &lt;!&ndash; 主面板&ndash;&gt;
+        <div id="main" style="width: 90%;height: 100%;position: absolute;left: 10%;top: 6%; background-color: lightgray;float: right">
+            <ul id="myTab" class="nav nav-tabs">
+                <li class="active">
+                    <a href="#home" data-toggle="tab">
+                        菜鸟教程
+                    </a>
+                </li>
+                <li><a href="#ios" data-toggle="tab">iOS</a></li>
+                <li class="dropdown">
+                    <a href="#" id="myTabDrop1" class="dropdown-toggle"
+                       data-toggle="dropdown">Java
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu" role="menu" aria-labelledby="myTabDrop1">
+                        <li><a href="#jmeter" tabindex="-1" data-toggle="tab">jmeter</a></li>
+                        <li><a href="#ejb" tabindex="-1" data-toggle="tab">ejb</a></li>
+                    </ul>
+                </li>
+            </ul>
+            <div id="myTabContent" class="tab-content">
+                <div class="tab-pane fade in active" id="home">
+                    <p>菜鸟教程是一个提供最新的web技术站点，本站免费提供了建站相关的技术文档，帮助广大web技术爱好者快速入门并建立自己的网站。菜鸟先飞早入行——学的不仅是技术，更是梦想。</p>
+                </div>
+                <div class="tab-pane fade" id="ios">
+                    <p>iOS 是一个由苹果公司开发和发布的手机操作系统。最初是于 2007 年首次发布 iPhone、iPod Touch 和 Apple
+                        TV。iOS 派生自 OS X，它们共享 Darwin 基础。OS X 操作系统是用在苹果电脑上，iOS 是苹果的移动版本。</p>
+                </div>
+                <div class="tab-pane fade" id="jmeter">
+                    <p>jMeter 是一款开源的测试软件。它是 100% 纯 Java 应用程序，用于负载和性能测试。</p>
+                </div>
+                <div class="tab-pane fade" id="ejb">
+                    <p>Enterprise Java Beans（EJB）是一个创建高度可扩展性和强大企业级应用程序的开发架构，部署在兼容应用程序服务器（比如 JBOSS、Web Logic 等）的 J2EE 上。
+                    </p>
+                </div>
+            </div>
+        </div>-->
+        <!-- 主面板end-->
+
+                    <div class="row" style="height:94%;width: 100%;position: absolute;left: 0;top: 6%">
+                        <div class="col-sm-2" style="height:100%;width: 10%;">
+                            <ul class="list-group text-center" style="height:100%;width: 100%;">
+                                <a class="list-group-item" data-addtab="consumerInfo" data-url="/to/consumerInfo">
+                                    客户信息
+                                </a>
+                                <a class="list-group-item" data-addtab="consumerRecord" data-ajax="true" data-url="/to/consumerRecord">
+                                    客户流水
+                                </a>
+                                <a class="list-group-item" data-addtab="message" data-content="Customize the content" data-url="example/ajax/mailbox.txt">
+                                    <i class="glyphicon glyphicon-bullhorn">
+                                    </i>
+                                    指定内容
+                                </a>
+                                <a class="list-group-item" data-addtab="setting" data-title="Customize the title" data-url="example/ajax/mailbox.txt">
+                                    <i class="glyphicon glyphicon-cog">
+                                    </i>
+                                    指定标题
+                                </a>
+                                <a class="list-group-item" data-addtab="userMenu1" data-url="example/ajax/mailbox.txt">
+                                    用户菜单1
+                                </a>
+                                <a class="list-group-item" data-addtab="userMenu2" data-target="#tabs2" data-url="example/ajax/button.html">
+                                    target2
+                                </a>
+                                <a class="list-group-item" data-addtab="sina" data-url="http://sina.com.cn">
+                                    新浪
+                                </a>
+                                <a class="list-group-item" data-addtab="baidu" data-url="http://baidu.com">
+                                    百度
+                                </a>
+                                <a class="list-group-item" id="closeAll">
+                                    关闭所有
+                                </a>
+                            </ul>
+                        </div>
+                        <div class="col-sm-10" style="height:100%;width: 90%;">
+                            <div>
+                                <!-- Nav tabs -->
+                                <ul class="nav nav-tabs" id="tabs1" role="tablist">
+                                    <li class="active" role="presentation">
+                                        <a aria-controls="home" data-toggle="tab" href="#home" role="tab">
+                                            首页
+                                        </a>
+                                    </li>
+                                </ul>
+                                <!-- Tab panes -->
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="home" role="tabpanel">
+                                        I'm a homepage.
+                                    </div>
+                                </div>
+                            </div>
+                            <!--<div>
+                                &lt;!&ndash; Nav tabs &ndash;&gt;
+                                <ul class="nav nav-tabs" id="tabs2" role="tablist">
+                                    <li class="active" role="presentation">
+                                        <a aria-controls="home1" data-toggle="tab" href="#home1" role="tab">
+                                            Home
+                                        </a>
+                                    </li>
+                                </ul>
+                                &lt;!&ndash; Tab panes &ndash;&gt;
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="home1" role="tabpanel">
+                                        I'm a homepage.
+                                    </div>
+                                </div>
+                            </div>-->
+                        </div>
+                    </div>
+                </div>
+</div>
+
+
+    <!--<iframe id="head" src="toHead" frameborder="0" scrolling="no" ></iframe>
+    <iframe id="navigationBar" src="toNavigationBar" frameborder="0" scrolling="no"></iframe>-->
+</body>
+</html>
+<script src="/js/jquery-3.3.1.min.js"></script>
+<script src="/bootstrap/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+<link rel="stylesheet" href="/bootstrap/bootstrap-3.3.7-dist/css/bootstrap.css"/>
+<link href="/bootstrap-addTabs/example/theme/css/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css"/>
+<link href="/bootstrap-addTabs/bootstrap.addtabs.css" media="screen" rel="stylesheet" type="text/css"/>
+<script src="/bootstrap-addTabs/example/theme/js/jquery.min.js"></script>
+<script src="/bootstrap-addTabs/example/theme/js/bootstrap.min.js"></script>
+<script src="/bootstrap-addTabs/bootstrap.addtabs.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#closeAll').click(function () {
+            $.addtabs.closeAll('#tabs1');
+        })
+    })
+</script>
+<script type="text/javascript">
+   $(function(){
+       $("#userName").html(localStorage.getItem("userName"));
+       $("#navigationBar").find("li").css("border-bottom","solid 1px silver").css("border-right","solid 1px silver");
+       $("#navigationBar").css("height",document.body.offsetHeight-50+"px");
+       $("#navigationBar").find("li").click(function () {
+       })
+   });
+</script>
