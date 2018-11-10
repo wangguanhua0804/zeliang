@@ -25,10 +25,23 @@ public class ConsumerController extends BaseController {
     @ResponseBody
     public JsonResult selectConsumer(@RequestBody Map requestMap){
         JsonResult jsonResult = initJsonResult();
-        List consumerList=consumerService.seletcConsumer(requestMap);
+        List consumerList=consumerService.selectcConsumer(requestMap);
         jsonResult.setRows(consumerList);
-        jsonResult.setTotal("12");
         logger.info(JSON.toJSONString(jsonResult));
+        return jsonResult;
+    }
+    @RequestMapping("/addConsumer")
+    @ResponseBody
+    public JsonResult addConsumer(@RequestBody Consumer consumer){
+        JsonResult jsonResult = initJsonResult();
+        int maxMemberId =consumerService.selectMaxMemberId();
+        consumer.setMemberId(maxMemberId+1+"");
+        Boolean result=consumerService.insertConsumer(consumer);
+        if(!result){
+            logger.info("/consumer/addConsumer : 插入失败   "+JSON.toJSONString(consumer));
+            jsonResult.setRspCode("201");
+            jsonResult.setMsg("插入失败");
+        }
         return jsonResult;
     }
 }

@@ -6,5 +6,9 @@ import java.util.List;
 import java.util.Map;
 
 public interface ConsumerService {
-    List seletcConsumer(Map requestMap);
+    List selectcConsumer(Map requestMap);
+
+    int selectMaxMemberId();
+
+    Boolean insertConsumer(Consumer consumer);
 }

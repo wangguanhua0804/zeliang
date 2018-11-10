@@ -8,5 +8,9 @@ import java.util.Map;
 
 @Mapper
 public interface ConsumerMapper {
-    List<Consumer> seletcConsumer(Map requestMap);
+    List<Consumer> selectcConsumer(Map requestMap);
+
+    int selectMaxMemberId();
+
+    int insertConsumer(Consumer consumer);
 }

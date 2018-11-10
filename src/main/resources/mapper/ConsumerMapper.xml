@@ -1,35 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wgh.springboot.mapper.ConsumerMapper">
-    <select id="seletcConsumer" parameterType="java.util.Map" resultType="com.wgh.springboot.domain.Consumer">
+    <select id="selectcConsumer" parameterType="java.util.Map" resultType="com.wgh.springboot.domain.Consumer">
         select * from  consumer_info
         where 1=1
-        <if test="dto !=null">
-
-            <if test="dto.id != null and dto.id != ''">
-                and id =#{dto.id}
+            <if test="id != null and id != ''">
+                and id =#{id}
             </if>
-            <if test="dto.memberId != null and dto.memberId != ''">
-                and memberId =#{dto.memberId}
+            <if test="memberId != null and memberId != ''">
+                and memberId =#{memberId}
             </if>
-            <if test="dto.name != null and dto.name != ''">
-                and name =#{dto.name}
+            <if test="name != null and name != ''">
+                and name =#{name}
             </if>
-            <if test="dto.idCard != null and dto.idCard != ''">
-                and idCard =#{dto.idCard}
+            <if test="idCard != null and idCard != ''">
+                and idCard =#{idCard}
             </if>
-            <if test="dto.telephone != null and dto.telephone != ''">
-                and telephone =#{dto.telephone}
+            <if test="telephone != null and telephone != ''">
+                and telephone =#{telephone}
             </if>
-            <if test="dto.mobile != null and dto.mobile != ''">
-                and mobile =#{dto.mobile}
+            <if test="mobile != null and mobile != ''">
+                and mobile =#{mobile}
             </if>
-            <if test="dto.address != null and dto.address != ''">
-                and address =#{dto.address}
+            <if test="address != null and address != ''">
+                and address =#{address}
             </if>
-            <if test="dto.createTime != null and dto.createTime != ''">
-                and createTime =#{dto.createTime}
+            <if test="createTime != null and createTime != ''">
+                and createTime =#{createTime}
             </if>
-        </if>
     </select>
+    <select id="selectMaxMemberId" resultType="int">
+        select max(memberId) from consumer_info;
+    </select>
+    <insert id="insertConsumer" parameterType="com.wgh.springboot.domain.Consumer" useGeneratedKeys="true" keyProperty="id" >
+        INSERT INTO consumer_info (
+        <if test="memberId != null and memberId != ''">
+             memberId ,
+        </if>
+        <if test="name != null and name != ''">
+            name,
+        </if>
+        <if test="sex != null and sex != ''">
+            sex,
+        </if>
+        <if test="idCard != null and idCard != ''">
+             idCard ,
+        </if>
+        <if test="telephone != null and telephone != ''">
+            telephone,
+        </if>
+        <if test="mobile != null and mobile != ''">
+            mobile,
+        </if>
+        <if test="address != null and address != ''">
+           address,
+        </if> `createTime`, `lastUpdateTime`) VALUES (
+
+        <if test="memberId != null and memberId != ''">
+            #{memberId,jdbcType=BIGINT},
+        </if>
+        <if test="name != null and name != ''">
+           #{name,jdbcType=VARCHAR},
+        </if>
+        <if test="sex != null and sex != ''">
+           #{sex,jdbcType=VARCHAR},
+        </if>
+        <if test="idCard != null and idCard != ''">
+            #{idCard,jdbcType=VARCHAR},
+        </if>
+        <if test="telephone != null and telephone != ''">
+            #{telephone,jdbcType=VARCHAR},
+        </if>
+        <if test="mobile != null and mobile != ''">
+            #{mobile,jdbcType=VARCHAR},
+        </if>
+        <if test="address != null and address != ''">
+            #{address,jdbcType=VARCHAR},
+        </if>
+        now(), NULL);
+
+    </insert>
 </mapper>

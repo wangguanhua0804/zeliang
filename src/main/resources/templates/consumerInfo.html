@@ -5,12 +5,26 @@
     <title>客户信息</title>
 </head>
 <body>
-<div>
+<div style="margin-top: 10px">
+    <form class="form-inline" id="serchForm">
+        <div class="form-group">
+            <label for="member">会员编号</label>
+            <input type="text" class="form-control" id="member" name="memberId" placeholder="会员编号"/>
+        </div>
+        <div class="form-group">
+            <label for="name">姓名</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="姓名"/>
+        </div>
+        <div class="form-group">
+            <label for="mobile">手机号</label>
+            <input type="text" class="form-control" id="mobile" name="mobile" placeholder="手机号"/>
+        </div>
+    </form>
     <div id="toolbar" class="btn-group">
-        <button id="btn_select" type="button" class="btn btn-default" onclick="batchUploadShow();">
+        <button id="btn_select" type="button" class="btn btn-default" onclick="selectBySerchForm();">
             <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询信息
         </button>
-        <button id="btn_add" type="button" class="btn btn-default" onclick="addVideoShow();">
+        <button id="btn_add" type="button" class="btn btn-default" onclick="opendialog();">
              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增客户
         </button>
         <button id="btn_edit" type="button" class="btn btn-default" onclick="editMemberInfoShow();">
@@ -33,11 +47,102 @@
 <script src="/bootstrap-table/bootstrap-table-locale-all.js"></script>
 <script src="/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
 <link rel="stylesheet" href="/bootstrap-table/bootstrap-table.css"/>
+<link rel="stylesheet" href="/bootstrap-dialog/css/bootstrap-dialog.css"/>
+<script src="/bootstrap-dialog/js/bootstrap-dialog.js"></script>
+
 
 <script type="text/javascript">
-    $(function () {
+    /*<![CDATA[*/
+
+    function opendialog() {
+        BootstrapDialog.show({
+            title: '新增客户',
+            message: function(dialog) {
+                var $content = $(
+                    '<form class="form-horizontal" role="form" id="addConsumerForm" style="text-align: left;vertical-align: middle;>'+
+                        '<div class="form-group">' +
+
+                    '<ul class="list-group">'+
+                        ' <li class="list-group-item">姓名<input type="text" class="form-control" id="name" name="name" placeholder="姓名" style="line-height: 30px"/></li>'+
+
+                        ' <li class="list-group-item">性别<input id="man" type="radio" value="男" checked="checked" name="sex" />男<input id="woman" type="radio" value="女"  name="sex"/>女</li>'+
+
+                        ' <li class="list-group-item">身份证号<input type="text" class="form-control" id="idCard" name="idCard"  style="line-height: 30px"/></li>'+
+
+                        ' <li class="list-group-item">手机号码<input type="text" class="form-control" id="mobile" name="mobile"  style="line-height: 30px"/></li>'+
+
+                        ' <li class="list-group-item">固定电话<input type="text" class="form-control" id="telephone" name="telephone"  style="line-height: 30px"/></li>'+
+
+                        ' <li class="list-group-item">所在地址<input type="text" class="form-control" id="address" name="address"  style="line-height: 30px"/></li>'+
+                    '</ul>'+
+                        '</div>'+
+
+                    '</form>');
+                /*var $footerButton = dialog.getButton('btn-1');
+                $content.find('button').click({$footerButton: $footerButton}, function(event) {
+                    event.data.$footerButton.enable();
+                    event.data.$footerButton.stopSpin();
+                    dialog.setClosable(true);
+                });*/
+
+                return $content;
+            },
+            buttons: [
+                {
+                    id: 'addConsumerBtn',
+                    label: '新增',
+                    action: function(dialog) {
+                        var data=getFormData("addConsumerForm");
+                        $.ajax({
+                            async: false,
+                            type: "POST",
+                            url: "/consumer/addConsumer",
+                            contentType: "application/json;charset=utf-8",
+                            dataType: "json",
+                            data: JSON.stringify(data),
+                            //jsonp:'callback',
+                            success: function (msg) {
+                                alert("成功")
+                            },
+                            error: function () {
+                                alert("错误");
+                            }
+                        });
+                        dialog.close();
+                    }
+                },{
+                id: 'btn-1',
+                label: '关闭',
+                action: function(dialog) {
+                   /* var $button = this; // 'this' here is a jQuery object that wrapping the <button> DOM element.
+                    $button.disable();
+                    $button.spin();*/
+                    dialog.close();
+                }
+            }]
+        });
+
+    }
+    
+    function getFormData(formId) {
+        var formData = decodeURIComponent($("#" + formId).serialize());
+        formData = formData.replace(/\+/g, " ");//序列化会导致空格变成加号  如  "a a" 序列化后变成 "a+a" ,此处是转化成空格
+        formData = formData.replace(/\t/g, "");//去除空格
+        var jsonObj = {};
+        var param = formData.split("&");
+        for (var i = 0; param != null && i < param.length; i++) {
+            var para = param[i].split("=");
+            jsonObj[para[0]] = para[1];
+        }
+        //jsonObj=  decodeURIComponent(jsonObj,"utf-8");
+        return jsonObj;
+    };
+    /*]]>*/
+
+
+    function selectBySerchForm () {
         var data="";
-        var obj={};
+        var obj=getFormData("serchForm");
             $.ajax({
                 async: false,
                 type: "POST",
@@ -119,7 +224,10 @@
                 switchable: true
             }],
         });
-    });
+    }
+    $(function () {
+        selectBySerchForm();
+    })
 
   //      url: '/consumer/selectConsumer',    //请求后台的URL（*）
   //      method: 'post',                     //请求方式（*）

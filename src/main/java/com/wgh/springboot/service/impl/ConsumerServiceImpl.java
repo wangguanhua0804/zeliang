@@ -14,8 +14,24 @@ public class ConsumerServiceImpl implements ConsumerService {
     @Autowired
     private ConsumerMapper consumerMapper;
     @Override
-    public List seletcConsumer(Map requestMap) {
-        List<Consumer> consumerList = consumerMapper.seletcConsumer(requestMap);
+    public List selectcConsumer(Map requestMap) {
+        List<Consumer> consumerList = consumerMapper.selectcConsumer(requestMap);
         return consumerList;
+    }
+
+
+    @Override
+    public int selectMaxMemberId() {
+        int maxMemberId= consumerMapper.selectMaxMemberId();
+        return maxMemberId;
+    }
+
+    @Override
+    public Boolean insertConsumer(Consumer consumer) {
+       int count= consumerMapper.insertConsumer(consumer);
+       if(count==1){
+           return true;
+       }
+           return false;
     }
 }
