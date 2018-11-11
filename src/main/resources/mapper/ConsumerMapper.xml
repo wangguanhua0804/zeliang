@@ -3,7 +3,7 @@
 <mapper namespace="com.wgh.springboot.mapper.ConsumerMapper">
     <select id="selectcConsumer" parameterType="java.util.Map" resultType="com.wgh.springboot.domain.Consumer">
         select * from  consumer_info
-        where 1=1
+        where 1=1 and state=1
             <if test="id != null and id != ''">
                 and id =#{id}
             </if>
@@ -80,4 +80,35 @@
         now(), NULL);
 
     </insert>
+
+    <update id="updateConsumer" parameterType="com.wgh.springboot.domain.Consumer">
+        UPDATE consumer_info SET
+        <if test="name != null and name != ''">
+            name = #{name,jdbcType=VARCHAR},
+        </if>
+        <if test="sex != null and sex != ''">
+            sex = #{sex,jdbcType=VARCHAR},
+        </if>
+        <if test="idCard != null and idCard != ''">
+            idCard = #{idCard,jdbcType=VARCHAR},
+        </if>
+        <if test="telephone != null and telephone != ''">
+            telephone = #{telephone,jdbcType=VARCHAR},
+        </if>
+        <if test="mobile != null and mobile != ''">
+            mobile = #{mobile,jdbcType=VARCHAR},
+        </if>
+        <if test="address != null and address != ''">
+            address = #{address,jdbcType=VARCHAR},
+        </if>
+        lastUpdateTime=now()
+        where id=#{id};
+    </update>
+    <update id="deleteConsumer" parameterType="java.util.List">
+        UPDATE consumer_info SET state=0 where id IN
+        <foreach collection="list" index="index" item="item"
+                 separator="," open="(" close=")">
+            #{item,jdbcType=BIGINT}
+        </foreach>
+    </update>
 </mapper>

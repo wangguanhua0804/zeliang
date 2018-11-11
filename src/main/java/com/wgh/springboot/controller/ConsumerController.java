@@ -38,9 +38,34 @@ public class ConsumerController extends BaseController {
         consumer.setMemberId(maxMemberId+1+"");
         Boolean result=consumerService.insertConsumer(consumer);
         if(!result){
-            logger.info("/consumer/addConsumer : 插入失败   "+JSON.toJSONString(consumer));
+            logger.info("/consumer/addConsumer : 新增用户失败   "+JSON.toJSONString(consumer));
             jsonResult.setRspCode("201");
-            jsonResult.setMsg("插入失败");
+            jsonResult.setMsg("新增用户失败");
+        }
+        return jsonResult;
+    }
+    @RequestMapping("/updateConsumer")
+    @ResponseBody
+    public JsonResult updateConsumer(@RequestBody Consumer consumer){
+        JsonResult jsonResult = initJsonResult();
+        Boolean result=consumerService.updateConsumer(consumer);
+        if(!result){
+            logger.info("/consumer/updateConsumer : 修改用户失败   "+JSON.toJSONString(consumer));
+            jsonResult.setRspCode("201");
+            jsonResult.setMsg("修改用户失败");
+        }
+        return jsonResult;
+    }
+    @RequestMapping("/deleteConsumer")
+    @ResponseBody
+    public JsonResult deleteConsumer(@RequestBody List<String> idList){
+        JsonResult jsonResult = initJsonResult();
+        logger.info(JSON.toJSONString(idList));
+        Integer count=consumerService.deleteConsumer(idList);
+        if(count==0){
+            logger.info("/consumer/deleteConsumer : 删除用户失败   "+JSON.toJSONString(idList));
+            jsonResult.setRspCode("201");
+            jsonResult.setMsg("删除用户失败");
         }
         return jsonResult;
     }

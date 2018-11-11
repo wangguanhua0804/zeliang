@@ -24,13 +24,13 @@
         <button id="btn_select" type="button" class="btn btn-default" onclick="selectBySerchForm();">
             <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询信息
         </button>
-        <button id="btn_add" type="button" class="btn btn-default" onclick="opendialog();">
+        <button id="btn_add" type="button" class="btn btn-default" onclick="openAddDialog();">
              <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>新增客户
         </button>
-        <button id="btn_edit" type="button" class="btn btn-default" onclick="editMemberInfoShow();">
+        <button id="btn_edit" type="button" class="btn btn-default" onclick="editDialog();">
             <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>选择修改
         </button>
-        <button id="btn_delete" type="button" class="btn btn-default" onclick="delMemberVideo();">
+        <button id="btn_delete" type="button" class="btn btn-default" onclick="deleteConsumer();">
             <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>选择删除
         </button>
     </div>
@@ -41,20 +41,258 @@
 </div>
 </body>
 </html>
+<!-- JQuery BootStrap插件-->
 <script src="/js/jquery-3.3.1.min.js"></script>
 <script src="/bootstrap/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+
+<!-- table插件 表格生成-->
 <script src="/bootstrap-table/bootstrap-table.js"></script>
 <script src="/bootstrap-table/bootstrap-table-locale-all.js"></script>
 <script src="/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
 <link rel="stylesheet" href="/bootstrap-table/bootstrap-table.css"/>
+
+<!-- dialog插件 弹出dialog页面-->
 <link rel="stylesheet" href="/bootstrap-dialog/css/bootstrap-dialog.css"/>
 <script src="/bootstrap-dialog/js/bootstrap-dialog.js"></script>
+<!-- messenger插件   消息提示-->
+<script src="/messenger/js/messenger.js"></script>
+<link rel="stylesheet" href="/messenger/css/messenger.css"/>
+<link rel="stylesheet" href="/messenger/css/messenger-theme-future.css"/>
 
+<!-- bootbox插件 弹出框-->
+<script src="/bootbox/bootbox.js"></script>
 
 <script type="text/javascript">
+    $._messengerDefaults = {
+        extraClasses: 'messenger-fixed messenger-theme-future messenger-on-bottom messenger-on-right'
+    };
     /*<![CDATA[*/
+    function deleteConsumer(){
+        var consumer=$("#dataTable").bootstrapTable('getSelections');
+        var idArr = new Array();
+        var nameArr = new Array();
+        $(consumer).each(function(index,item){
+            idArr.push(item.id);
+            nameArr.push(item.name);
+        });
+        BootstrapDialog.show({
+            title: '修改客户',
+            message:"确定要删除"+nameArr+"的数据吗?",
 
-    function opendialog() {
+            buttons: [
+                {
+                    id: 'btn-1',
+                    label: '取消',
+                    action: function(dialog) {
+                        dialog.close();
+                    }
+                },
+                {
+                    id: 'deleteConsumerBtn',
+                    label: '删除',
+                    action: function(dialog) {
+                        $.ajax({
+                            async: false,
+                            type: "POST",
+                            url: "/consumer/deleteConsumer",
+                            contentType: "application/json;charset=utf-8",
+                            dataType: "json",
+                            data: JSON.stringify(idArr),
+                            //jsonp:'callback',
+                            success: function (result) {
+                                if(result.rspCode==="200"){
+                                    selectBySerchForm();
+                                    $.globalMessenger().post({
+                                        message: "操作成功",//提示信息
+                                        type: 'success',//消息类型。error、info、success
+                                        hideAfter: 2,//多长时间消失
+                                        showCloseButton:true,//是否显示关闭按钮
+                                        hideOnNavigate: true //是否隐藏导航
+                                    });
+                                    dialog.close();
+                                }else {
+                                    $.globalMessenger().post({
+                                        message: "操作失败",//提示信息
+                                        type: 'error',//消息类型。error、info、success
+                                        hideAfter: 2,//多长时间消失
+                                        showCloseButton:true,//是否显示关闭按钮
+                                        hideOnNavigate: true //是否隐藏导航
+                                    });
+                                    dialog.close();
+                                }
+                            },
+                            error: function () {
+                                $.globalMessenger().post({
+                                    message: "系统异常",//提示信息
+                                    type: 'error',//消息类型。error、info、success
+                                    hideAfter: 2,//多长时间消失
+                                    showCloseButton:true,//是否显示关闭按钮
+                                    hideOnNavigate: true //是否隐藏导航
+                                });
+                                dialog.close();
+                            }
+                        });
+                    }
+                },]
+        });
+        /*bootbox.setLocale("zh_CN");
+        bootbox.alert({
+            size: "large",
+            title: "删除用户",
+            message: "确定要删除"+nameArr+"吗?",
+            buttons: {
+                confirm: {
+                    label: '确定删除',
+                    className: 'btn-danger'
+                },
+                cancel: {
+                    label: '取消',
+                    className: 'btn-default'
+                }
+            },
+            callback: function(){ /!* your callback code *!/
+                $.ajax({
+                    async: false,
+                    type: "POST",
+                    url: "/consumer/deleteConsumer",
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "json",
+                    data: JSON.stringify(idArr),
+                    //jsonp:'callback',
+                    success: function (result) {
+                        if(result.rspCode==="200"){
+                            $.globalMessenger().post({
+                                message: "操作成功",//提示信息
+                                type: 'success',//消息类型。error、info、success
+                                hideAfter: 2,//多长时间消失
+                                showCloseButton:true,//是否显示关闭按钮
+                                hideOnNavigate: true //是否隐藏导航
+                            });
+                        }else {
+                            $.globalMessenger().post({
+                                message: "操作失败",//提示信息
+                                type: 'error',//消息类型。error、info、success
+                                hideAfter: 2,//多长时间消失
+                                showCloseButton:true,//是否显示关闭按钮
+                                hideOnNavigate: true //是否隐藏导航
+                            });
+                        }
+                    },
+                    error: function () {
+                        $.globalMessenger().post({
+                            message: "系统异常",//提示信息
+                            type: 'error',//消息类型。error、info、success
+                            hideAfter: 2,//多长时间消失
+                            showCloseButton:true,//是否显示关闭按钮
+                            hideOnNavigate: true //是否隐藏导航
+                        });
+                    }
+                });}
+        })*/
+    }
+
+    function editDialog() {
+        var getSelections=$("#dataTable").bootstrapTable('getSelections');
+        if(getSelections.length>1){
+            $.globalMessenger().post({
+                message: "只能选择一条数据进行修改",//提示信息
+                type: 'error',//消息类型。error、info、success
+                hideAfter: 2,//多长时间消失
+                showCloseButton:true,//是否显示关闭按钮
+                hideOnNavigate: true //是否隐藏导航
+            });
+            return;
+        }
+        var consumer=getSelections[0];
+        var sex='';
+        if(consumer.sex=="男"){
+            sex=' <li class="list-group-item">性别<input id="man" type="radio" value="男" checked="checked" name="sex" />男<input id="woman" type="radio" value="女"  name="sex"/>女</li>';
+        }else {
+            sex=' <li class="list-group-item">性别<input id="man" type="radio" value="男"  name="sex" />男<input id="woman" type="radio" checked="checked" value="女"  name="sex"/>女</li>';
+        }
+        BootstrapDialog.show({
+            title: '修改客户',
+            message: function(dialog) {
+                var $content = $(
+                    '<form class="form-horizontal" role="form" id="updateConsumerForm" style="text-align: left;vertical-align: middle;>'+
+                    '<div class="form-group">' +
+
+                    '<ul class="list-group">'+
+                        '<input type="hidden" id="id" name="id" value="'+consumer.id+'">'+
+                    ' <li class="list-group-item">姓名<input type="text" class="form-control" id="name" name="name" value="'+consumer.name+'" style="line-height: 30px"/></li>'+
+                      sex+
+                    //' <li class="list-group-item">性别<input id="man" type="radio" value="男" checked="checked" name="sex" />男<input id="woman" type="radio" value="女"  name="sex"/>女</li>'+
+
+                    ' <li class="list-group-item">身份证号<input type="text" class="form-control" id="idCard" name="idCard" value="'+consumer.idCard+'" style="line-height: 30px"/></li>'+
+
+                    ' <li class="list-group-item">手机号码<input type="text" class="form-control" id="mobile" name="mobile"  value="'+consumer.mobile+'"style="line-height: 30px"/></li>'+
+
+                    ' <li class="list-group-item">固定电话<input type="text" class="form-control" id="telephone" name="telephone" value="'+consumer.telephone+'" style="line-height: 30px"/></li>'+
+
+                    ' <li class="list-group-item">所在地址<input type="text" class="form-control" id="address" name="address" value="'+consumer.address+'" style="line-height: 30px"/></li>'+
+                    '</ul>'+
+                    '</div>'+
+
+                    '</form>');
+                return $content;
+            },
+            buttons: [
+                {
+                    id: 'updateConsumerBtn',
+                    label: '确认修改',
+                    action: function(dialog) {
+                        var data=getFormData("updateConsumerForm");
+                        $.ajax({
+                            async: false,
+                            type: "POST",
+                            url: "/consumer/updateConsumer",
+                            contentType: "application/json;charset=utf-8",
+                            dataType: "json",
+                            data: JSON.stringify(data),
+                            //jsonp:'callback',
+                            success: function (result) {
+                                if(result.rspCode==="200"){
+                                    $.globalMessenger().post({
+                                        message: "操作成功",//提示信息
+                                        type: 'success',//消息类型。error、info、success
+                                        hideAfter: 2,//多长时间消失
+                                        showCloseButton:true,//是否显示关闭按钮
+                                        hideOnNavigate: true //是否隐藏导航
+                                    });
+                                    dialog.close();
+                                    selectBySerchForm();
+                                }else {
+                                    $.globalMessenger().post({
+                                        message: "操作失败",//提示信息
+                                        type: 'error',//消息类型。error、info、success
+                                        hideAfter: 2,//多长时间消失
+                                        showCloseButton:true,//是否显示关闭按钮
+                                        hideOnNavigate: true //是否隐藏导航
+                                    });
+                                }
+                            },
+                            error: function () {
+                                $.globalMessenger().post({
+                                    message: "系统异常",//提示信息
+                                    type: 'error',//消息类型。error、info、success
+                                    hideAfter: 2,//多长时间消失
+                                    showCloseButton:true,//是否显示关闭按钮
+                                    hideOnNavigate: true //是否隐藏导航
+                                });
+                            }
+                        });
+                    }
+                },{
+                    id: 'btn-1',
+                    label: '关闭',
+                    action: function(dialog) {
+
+                        dialog.close();
+                    }
+                }]
+        });
+    }
+    function openAddDialog() {
         BootstrapDialog.show({
             title: '新增客户',
             message: function(dialog) {
@@ -101,22 +339,43 @@
                             dataType: "json",
                             data: JSON.stringify(data),
                             //jsonp:'callback',
-                            success: function (msg) {
-                                alert("成功")
+                            success: function (result) {
+                                if(result.rspCode==="200"){
+                                    $.globalMessenger().post({
+                                        message: "操作成功",//提示信息
+                                        type: 'success',//消息类型。error、info、success
+                                        hideAfter: 2,//多长时间消失
+                                        showCloseButton:true,//是否显示关闭按钮
+                                        hideOnNavigate: true //是否隐藏导航
+                                    });
+                                    dialog.close();
+                                    selectBySerchForm();
+                                }else {
+                                    $.globalMessenger().post({
+                                        message: "操作失败",//提示信息
+                                        type: 'error',//消息类型。error、info、success
+                                        hideAfter: 2,//多长时间消失
+                                        showCloseButton:true,//是否显示关闭按钮
+                                        hideOnNavigate: true //是否隐藏导航
+                                    });
+                                }
                             },
                             error: function () {
-                                alert("错误");
+                                $.globalMessenger().post({
+                                    message: "系统异常",//提示信息
+                                    type: 'error',//消息类型。error、info、success
+                                    hideAfter: 2,//多长时间消失
+                                    showCloseButton:true,//是否显示关闭按钮
+                                    hideOnNavigate: true //是否隐藏导航
+                                });
                             }
                         });
-                        dialog.close();
                     }
                 },{
                 id: 'btn-1',
                 label: '关闭',
                 action: function(dialog) {
-                   /* var $button = this; // 'this' here is a jQuery object that wrapping the <button> DOM element.
-                    $button.disable();
-                    $button.spin();*/
+                   
                     dialog.close();
                 }
             }]
@@ -161,7 +420,7 @@
         $('#dataTable').bootstrapTable('destroy');   //动态加载表格之前，先销毁表格
         $('#dataTable').bootstrapTable({
             toolbar: '#toolbar',
-            singleSelect: true,
+            singleSelect: false,
             clickToSelect: true,
             striped: true,
             //sortName: "id",

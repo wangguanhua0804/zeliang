@@ -11,4 +11,8 @@ public interface ConsumerService {
     int selectMaxMemberId();
 
     Boolean insertConsumer(Consumer consumer);
+
+    Boolean updateConsumer(Consumer consumer);
+
+    Integer deleteConsumer(List<String> idList);
 }
