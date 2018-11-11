@@ -15,4 +15,6 @@ public interface ConsumerService {
     Boolean updateConsumer(Consumer consumer);
 
     Integer deleteConsumer(List<String> idList);
+
+    List selectConsumerRecord(Map requestMap);
 }

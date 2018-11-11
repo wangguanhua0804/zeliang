@@ -30,6 +30,15 @@ public class ConsumerController extends BaseController {
         logger.info(JSON.toJSONString(jsonResult));
         return jsonResult;
     }
+    @RequestMapping("/selectConsumerRecord")
+    @ResponseBody
+    public JsonResult selectConsumerRecord(@RequestBody Map requestMap){
+        JsonResult jsonResult = initJsonResult();
+        List consumerRecordList=consumerService.selectConsumerRecord(requestMap);
+        jsonResult.setRows(consumerRecordList);
+        logger.info(JSON.toJSONString(jsonResult));
+        return jsonResult;
+    }
     @RequestMapping("/addConsumer")
     @ResponseBody
     public JsonResult addConsumer(@RequestBody Consumer consumer){

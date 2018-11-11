@@ -2,6 +2,7 @@ package com.wgh.springboot.service.impl;
 
 import com.wgh.springboot.controller.ConsumerController;
 import com.wgh.springboot.domain.Consumer;
+import com.wgh.springboot.domain.ConsumerRecord;
 import com.wgh.springboot.mapper.ConsumerMapper;
 import com.wgh.springboot.service.ConsumerService;
 import org.slf4j.Logger;
@@ -17,6 +18,7 @@ public class ConsumerServiceImpl implements ConsumerService {
     static final Logger logger = (Logger) LoggerFactory.getLogger(ConsumerServiceImpl.class);
     @Autowired
     private ConsumerMapper consumerMapper;
+
     @Override
     public List selectcConsumer(Map requestMap) {
         List<Consumer> consumerList = consumerMapper.selectcConsumer(requestMap);
@@ -26,19 +28,19 @@ public class ConsumerServiceImpl implements ConsumerService {
 
     @Override
     public int selectMaxMemberId() {
-        int maxMemberId= consumerMapper.selectMaxMemberId();
+        int maxMemberId = consumerMapper.selectMaxMemberId();
         return maxMemberId;
     }
 
     @Override
     public Boolean insertConsumer(Consumer consumer) {
-        try{
-            int count= consumerMapper.insertConsumer(consumer);
-            if(count==1){
+        try {
+            int count = consumerMapper.insertConsumer(consumer);
+            if (count == 1) {
                 return true;
             }
             return false;
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error(e.getMessage());
             return false;
         }
@@ -46,13 +48,13 @@ public class ConsumerServiceImpl implements ConsumerService {
 
     @Override
     public Boolean updateConsumer(Consumer consumer) {
-        try{
-            int count= consumerMapper.updateConsumer(consumer);
-            if(count==1){
+        try {
+            int count = consumerMapper.updateConsumer(consumer);
+            if (count == 1) {
                 return true;
             }
             return false;
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error(e.getMessage());
             return false;
         }
@@ -60,12 +62,19 @@ public class ConsumerServiceImpl implements ConsumerService {
 
     @Override
     public Integer deleteConsumer(List<String> idList) {
-        try{
-            Integer count= consumerMapper.deleteConsumer(idList);
+        try {
+            Integer count = consumerMapper.deleteConsumer(idList);
             return count;
-        }catch (Exception e){
+        } catch (Exception e) {
             logger.error(e.getMessage());
             return 0;
         }
     }
+
+    @Override
+    public List selectConsumerRecord(Map requestMap) {
+        List<ConsumerRecord> consumerRecordList = consumerMapper.selectConsumerRecord(requestMap);
+        return consumerRecordList;
+    }
 }
+

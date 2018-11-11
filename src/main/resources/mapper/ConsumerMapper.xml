@@ -111,4 +111,36 @@
             #{item,jdbcType=BIGINT}
         </foreach>
     </update>
+
+
+    <select id="selectConsumerRecord" parameterType="java.util.Map" resultType="com.wgh.springboot.domain.ConsumerRecord">
+        <bind name="symptom" value="'%' + symptom + '%'" />
+        <bind name="medicine" value="'%' + medicine + '%'" />
+        select * from consumer_record WHERE 1=1
+        <if test="memberId != null and memberId != ''">
+            and name =#{memberId}
+        </if>
+        <if test="name != null and name != ''">
+            and name =#{name}
+        </if>
+        <if test="mobile != null and mobile != ''">
+            and mobile =#{mobile}
+        </if>
+        <if test="idCard != null and idCard != ''">
+            and idCard =#{idCard}
+        </if>
+        <if test="symptom != null and symptom != ''">
+            and symptom  like #{symptom}
+        </if>
+        <if test="medicine != null and medicine != ''">
+            and medicine like #{medicine}
+        </if>
+        <if test="beginTime != null and beginTime != ''">
+            and createTime &gt;=#{beginTime}
+        </if>
+        <if test="endTime != null and endTime != ''">
+            and createTime &lt;#{endTime}
+        </if>
+    </select>
+
 </mapper>

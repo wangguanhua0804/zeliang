@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class ConsumerRecord implements Serializable {
     private String id;
+    private String memberId;
     private String name;
     private String mobile;
     private String idCard;
@@ -11,6 +12,8 @@ public class ConsumerRecord implements Serializable {
     private String medicine;
     private String money;
     private String createTime;
+    private String beginTime;
+    private String endTime;
     private String careteUser;
     private String lastUpdateTime;
 
@@ -20,6 +23,14 @@ public class ConsumerRecord implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getMemberId() {
+        return memberId;
+    }
+
+    public void setMemberId(String memberId) {
+        this.memberId = memberId;
     }
 
     public String getName() {
@@ -92,5 +103,21 @@ public class ConsumerRecord implements Serializable {
 
     public void setLastUpdateTime(String lastUpdateTime) {
         this.lastUpdateTime = lastUpdateTime;
+    }
+
+    public String getBeginTime() {
+        return beginTime;
+    }
+
+    public void setBeginTime(String beginTime) {
+        this.beginTime = beginTime;
+    }
+
+    public String getEndTime() {
+        return endTime;
+    }
+
+    public void setEndTime(String endTime) {
+        this.endTime = endTime;
     }
 }

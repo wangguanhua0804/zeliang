@@ -1,6 +1,7 @@
 package com.wgh.springboot.mapper;
 
 import com.wgh.springboot.domain.Consumer;
+import com.wgh.springboot.domain.ConsumerRecord;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
@@ -17,4 +18,6 @@ public interface ConsumerMapper {
     int updateConsumer(Consumer consumer);
 
     int deleteConsumer(List<String> idList);
+
+    List<ConsumerRecord> selectConsumerRecord(Map requestMap);
 }
