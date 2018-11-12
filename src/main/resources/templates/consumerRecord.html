@@ -6,46 +6,46 @@
 </head>
 <body>
 <div style="margin-top: 10px">
-    <form  id="serchFormForConsumerRecord">
+    <form  id="serchFormForConsumerRecord" class="form-inline">
         <div>
-            <div class="form-group col-md-2" >
-            <label for="member">会员编号</label>
-            <input type="text" class="form-control col-xs-8" id="member" name="memberId" placeholder="会员编号"/>
+            <div class="form-group " style="width: 13%">
+            <label for="member" style="width: 30%">会员编号</label>
+            <input type="text" style="width: 65%" class="form-control" id="member" name="memberId" placeholder="会员编号"/>
             </div>
-            <div class="form-group col-md-2">
-                <label for="name">姓名</label>
-                <input type="text" class="form-control" id="name" name="name" placeholder="姓名"/>
+            <div class="form-group" style="width: 13%">
+                <label for="name" style="width: 30%">姓名</label>
+                <input type="text" style="width: 65%" class="form-control" id="name" name="name" placeholder="姓名"/>
             </div>
-            <div class="form-group col-md-2" >
-                <label for="mobile">手机号</label>
-                <input type="text" class="form-control" id="mobile" name="mobile" placeholder="手机号"/>
+            <div class="form-group " style="width: 13%">
+                <label for="mobile" style="width: 30%">手机号</label>
+                <input type="text" style="width: 65%" class="form-control" id="mobile" name="mobile" placeholder="手机号"/>
             </div>
-            <div class="form-group col-md-2" >
-                <label for="beginTime">开始时间</label>
-                <input type="text" class="form-control" id="beginTime" name="beginTime" placeholder="开始时间"/>
+            <div class="form-group " style="width: 13%">
+                <label for="beginTime" style="width: 30%">开始时间</label>
+                <input type="text" style="width: 65%" class="form-control" id="beginTime" name="beginTime" placeholder="开始时间"/>
             </div>
-            <div class="form-group col-md-2" >
-                <label for="endTime">结束时间</label>
-                <input type="text" class="form-control" id="endTime" name="endTime" placeholder="结束时间"/>
+            <div class="form-group " style="width: 13%">
+                <label for="endTime" style="width: 30%">结束时间</label>
+                <input type="text" style="width: 65%" class="form-control" id="endTime" name="endTime" placeholder="结束时间"/>
             </div>
         </div>
-        <div>
-            <div class="form-group col-md-2" >
-                <label for="symptom">症状</label>
-                <input type="text" class="form-control" id="symptom" name="symptom" placeholder="症状"/>
+        <div style="margin-top: 10px">
+            <div class="form-group " style="width: 13%">
+                <label for="symptom" style="width: 30%">症状</label>
+                <input type="text" style="width: 65%" class="form-control" id="symptom" name="symptom" placeholder="症状"/>
             </div>
-            <div class="form-group col-md-2" >
-                <label for="medicine">药物</label>
-                <input type="text" class="form-control" id="medicine" name="medicine" placeholder="药物"/>
+            <div class="form-group " style="width: 13%" >
+                <label for="medicine" style="width: 30%">药物</label>
+                <input type="text" style="width: 65%" class="form-control" id="medicine" name="medicine" placeholder="药物"/>
             </div>
-            <div class="form-group col-md-2" >
-                <label for="careteUser">创建人</label>
-                <input type="text" class="form-control" id="careteUser" name="careteUser" placeholder="创建人"/>
+            <div class="form-group " style="width: 13%">
+                <label for="careteUser" style="width: 30%">创建人</label>
+                <input type="text" style="width: 65%" class="form-control" id="careteUser" name="careteUser" placeholder="创建人"/>
             </div>
         </div>
     </form>
 
-    <div id="toolbarForConsumerRecord" class="btn-group" style="float: right">
+    <div id="toolbarForConsumerRecord" class="btn-group" style="float: left;margin-top: 10px">
         <button id="btn_select" type="button" class="btn btn-default" onclick="selectConsumerRecordByserchForm();">
             <span class="glyphicon glyphicon-search" aria-hidden="true"></span>查询信息
         </button>
@@ -213,7 +213,11 @@
             }, {
                 field: 'symptom',
                 title: '症状',
-                switchable: true
+                switchable: true,
+                formatter: bigTextFormatter,
+                events: {
+                    "click .toggle": toggleText
+                }
             }, {
                 field: 'medicine',
                 title: '药物',

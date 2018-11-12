@@ -28,4 +28,11 @@ public class SysController extends BaseController {
         logger.info(JSON.toJSONString(jsonResult));
         return jsonResult;
     }
+    @RequestMapping("/logOut")
+    @ResponseBody
+    public JsonResult logOut(@RequestBody Map<String,String> map){
+        JsonResult jsonResult = sysUserService.logout(map);
+        logger.info(JSON.toJSONString(jsonResult));
+        return jsonResult;
+    }
 }

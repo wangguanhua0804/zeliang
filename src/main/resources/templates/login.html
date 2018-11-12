@@ -5,22 +5,40 @@
     <meta name="content-type" content="application/html; charset=UTF-8"/>
     <title>登录</title>
 </head>
-<link rel="stylesheet" type="text/css" href="/css/login.css"/>
 <body>
 <div id="login_div">
     <form id="loginForm">
-
-        <div>
-            <input id="user" placeholder="用户名"/>
-            <span id="msg"></span>
-        </div>
-        <div>
-            <input id="password" placeholder="密码" type="password"/>
+        <div style="padding: 100px 100px 10px;">
+            <div class="input-group">
+                <span class="input-group-addon">账号</span>
+                <input type="text" id="user" class="form-control"/>
+                <span id="msg"></span>
+            </div>
+            <br/>
+            <div class="input-group">
+                <span class="input-group-addon">密码</span>
+                <input type="password" id="password" class="form-control"/>
+            </div>
         </div>
         <button id="login_button" type="submit"  >登录</button>
     </form>
 </div>
 </body>
 </html>
+<!-- JQuery BootStrap插件-->
 <script src="/js/jquery-3.3.1.min.js"></script>
-<script type="text/javascript" src="/js/login.js"></script>
+<script src="/bootstrap/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+<script src="/js/login.js"></script>
+
+<!-- table插件 表格生成-->
+<script src="/bootstrap-table/bootstrap-table.js"></script>
+<script src="/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+<link rel="stylesheet" href="/bootstrap-table/bootstrap-table.css"/>
+
+<!-- dialog插件 弹出dialog页面-->
+<script src="/bootstrap-dialog/js/bootstrap-dialog.js"></script>
+<link rel="stylesheet" href="/bootstrap-dialog/css/bootstrap-dialog.css"/>
+<!-- messenger插件   消息提示-->
+<script src="/messenger/js/messenger.js"></script>
+<link rel="stylesheet" href="/messenger/css/messenger.css"/>
+<link rel="stylesheet" href="/messenger/css/messenger-theme-future.css"/>

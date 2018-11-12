@@ -11,6 +11,24 @@ public class SysUser implements Serializable {
     private String idCard;
     private String createTime;
     private String createUser;
+    private String token;
+    private SysRole role;
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public SysRole getRole() {
+        return role;
+    }
+
+    public void setRole(SysRole role) {
+        this.role = role;
+    }
 
     public String getId() {
         return id;

@@ -114,8 +114,12 @@
 
 
     <select id="selectConsumerRecord" parameterType="java.util.Map" resultType="com.wgh.springboot.domain.ConsumerRecord">
-        <bind name="symptom" value="'%' + symptom + '%'" />
-        <bind name="medicine" value="'%' + medicine + '%'" />
+        <if test="symptom != null and symptom != ''">
+            <bind name="symptom" value="'%' + symptom + '%'" />
+        </if>
+        <if test="medicine != null and medicine != ''">
+            <bind name="medicine" value="'%' + medicine + '%'" />
+        </if>
         select * from consumer_record WHERE 1=1
         <if test="memberId != null and memberId != ''">
             and name =#{memberId}

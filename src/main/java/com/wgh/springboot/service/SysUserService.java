@@ -6,4 +6,6 @@ import java.util.Map;
 
 public interface SysUserService {
     JsonResult login(Map<String, String> map);
+
+    JsonResult logout(Map<String, String> map);
 }
