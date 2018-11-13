@@ -122,7 +122,7 @@
         </if>
         select * from consumer_record WHERE 1=1 and state =1
         <if test="memberId != null and memberId != ''">
-            and name =#{memberId}
+            and memberId =#{memberId}
         </if>
         <if test="name != null and name != ''">
             and name =#{name}
