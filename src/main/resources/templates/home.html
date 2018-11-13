@@ -17,7 +17,7 @@
                 </div>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="#"><span  class="glyphicon glyphicon-user"></span>&nbsp;<span id="userName"></span></a></li>
-                    <li><a href="#"><span class="glyphicon glyphicon-log-out"></span> 退出</a></li>
+                    <li><a href="#" id="logout"><span class="glyphicon glyphicon-log-out"></span> 退出</a></li>
                 </ul>
             </div>
         </nav>
@@ -104,5 +104,27 @@
 <script type="text/javascript">
    $(function(){
        $("#userName").html(localStorage.getItem("userName"));
+       $("#logout").click(function () {
+           var token=localStorage.getItem("token");
+           if(token===null||token===""||!token){
+               localStorage.clear();
+               window.location.href="login.html";
+               return;
+           }
+           token={"token":localStorage.getItem("token")};
+           $.ajax({
+               async: false,
+               type: "POST",
+               url: "/api/sys/logout",
+               headers: {"token": localStorage.getItem("token")},
+               contentType: "application/json;charset=utf-8",
+               dataType: "json",
+               data: JSON.stringify(token),
+               success:function () {
+                   localStorage.clear();
+                   window.location.href="login.html";
+               }
+           })
+       })
    });
 </script>

@@ -37,8 +37,8 @@ public class ConsumerServiceImpl implements ConsumerService {
     @Override
     public Boolean insertConsumer(Consumer consumer) {
         try {
-            int count = consumerMapper.insertConsumer(consumer);
-            if (count == 1) {
+            Integer id = consumerMapper.insertConsumer(consumer);
+            if (id > 0) {
                 return true;
             }
             return false;
@@ -93,8 +93,9 @@ public class ConsumerServiceImpl implements ConsumerService {
             consumer.setCreateUser(consumerRecord.getCreateUser());
             int maxMemberId = consumerMapper.selectMaxMemberId();
             consumer.setMemberId(maxMemberId+1+"");
-            Integer count=consumerMapper.insertConsumer(consumer);
-            if(count==1){
+            Integer insertId=consumerMapper.insertConsumer(consumer);
+            if(insertId>0){
+                consumerRecord.setMemberId(String.valueOf(maxMemberId));
                 Boolean result =consumerMapper.insertConsumerRecord(consumerRecord);
                 if (result){
                     return "";

@@ -66,6 +66,10 @@ public class ConsumerController extends BaseController {
     public JsonResult addConsumerRecord(@RequestBody ConsumerRecord consumerRecord) {
         JsonResult jsonResult = initJsonResult();
         String message = consumerService.insertConsumerRecord(consumerRecord);
+        if(message.length()>0){
+            jsonResult.setRspCode("201");
+            jsonResult.setMsg(message);
+        }
         return jsonResult;
     }
 

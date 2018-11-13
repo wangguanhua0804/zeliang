@@ -13,7 +13,7 @@ public interface ConsumerMapper {
 
     int selectMaxMemberId();
 
-    int insertConsumer(Consumer consumer);
+    Integer insertConsumer(Consumer consumer);
 
     int updateConsumer(Consumer consumer);
 

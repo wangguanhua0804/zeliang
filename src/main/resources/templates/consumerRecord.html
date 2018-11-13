@@ -104,10 +104,10 @@
         $("#serchFormForConsumerRecord input").val("");
     }
 
-    var textLength = 30;
+    var textLength = 18;
 
     function bigTextFormatter(value, row, index) {
-        if (value != null && value.length > 30) {
+        if (value != null && value.length > textLength) {
             return '<span class="big-text">' + value.substr(0, textLength) + '...</span> <a class="toggle" href="javascript:void(0)" rel="external nofollow" rel="external nofollow" rel="external nofollow" >查看</a>';
         }
         return value;

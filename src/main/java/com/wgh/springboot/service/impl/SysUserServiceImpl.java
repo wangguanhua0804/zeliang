@@ -55,7 +55,7 @@ public class SysUserServiceImpl implements SysUserService {
         JsonResult jsonResult = new JsonResult();
         String token=map.get("token");
         JedisUtils jedisUtils = new JedisUtils();
-        String userId = jedisUtils.getValueByKey("token");
+        String userId = jedisUtils.getValueByKey(token);
         jedisUtils.delKey(userId);
         jedisUtils.delKey(token);
         jsonResult.setRspCode("200");
