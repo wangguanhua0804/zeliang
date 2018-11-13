@@ -118,7 +118,6 @@
                                         showCloseButton:true,//是否显示关闭按钮
                                         hideOnNavigate: true //是否隐藏导航
                                     });
-                                    dialog.close();
                                 }else {
                                     $.globalMessenger().post({
                                         message: "操作失败",//提示信息
@@ -127,8 +126,8 @@
                                         showCloseButton:true,//是否显示关闭按钮
                                         hideOnNavigate: true //是否隐藏导航
                                     });
-                                    dialog.close();
                                 }
+                                dialog.close();
                             },
                             error: function () {
                                 $.globalMessenger().post({
@@ -254,7 +253,6 @@
                     id: 'btn-1',
                     label: '关闭',
                     action: function(dialog) {
-
                         dialog.close();
                     }
                 }]
@@ -346,7 +344,6 @@
                 id: 'btn-1',
                 label: '关闭',
                 action: function(dialog) {
-                   
                     dialog.close();
                 }
             }]

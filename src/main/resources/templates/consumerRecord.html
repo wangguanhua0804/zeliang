@@ -10,16 +10,15 @@
         <div>
             <div class="form-group " style="width: 13%">
                 <label for="member" style="width: 30%">会员编号</label>
-                <input type="text" style="width: 65%" class="form-control" id="member" name="memberId"
-                       placeholder="会员编号"/>
+                <input type="text" style="width: 65%" class="form-control" id="member" placeholder="会员编号" name="memberId"/>
             </div>
             <div class="form-group" style="width: 13%">
                 <label for="name" style="width: 30%">姓名</label>
-                <input type="text" style="width: 65%" class="form-control" id="name" name="name" placeholder="姓名"/>
+                <input type="text" style="width: 65%" class="form-control" id="name" placeholder="姓名" name="name" />
             </div>
             <div class="form-group " style="width: 13%">
                 <label for="mobile" style="width: 30%">手机号</label>
-                <input type="text" style="width: 65%" class="form-control" id="mobile" name="mobile" placeholder="手机号"/>
+                <input type="text" style="width: 65%" class="form-control" id="mobile" placeholder="手机号" name="mobile"/>
             </div>
             <div class="form-group " style="width: 13%">
                 <label for="beginTime" style="width: 30%">开始时间</label>
@@ -111,6 +110,79 @@
             return '<span class="big-text">' + value.substr(0, textLength) + '...</span> <a class="toggle" href="javascript:void(0)" rel="external nofollow" rel="external nofollow" rel="external nofollow" >查看</a>';
         }
         return value;
+    }
+
+    function deleteConsumerRecord(){
+        var consumerRecord=$("#dataTableForConsumerRecord").bootstrapTable('getSelections');
+        var idArr = new Array();
+        var nameArr = new Array();
+        $(consumerRecord).each(function(index,item){
+            idArr.push(item.id);
+            nameArr.push(item.name);
+        });
+        BootstrapDialog.show({
+            type:BootstrapDialog.TYPE_DANGER,
+            size:BootstrapDialog.SIZE_SMALL,
+            title: '删除流水',
+            message:"确定要删除"+nameArr+"的流水记录吗?",
+
+            buttons: [
+                {
+                    id: 'btn-1',
+                    label: '取消',
+                    action: function(dialog) {
+                        dialog.close();
+                    }
+                },
+                {
+                    id: 'deleteConsumerRecordBtn',
+                    label: '删除',
+                    action: function(dialog) {
+                        $.ajax({
+                            async: false,
+                            type: "POST",
+                            url: "/api/consumer/deleteConsumerRecord",
+                            headers:{"token":localStorage.getItem("token")},
+                            contentType: "application/json;charset=utf-8",
+                            dataType: "json",
+                            data: JSON.stringify(idArr),
+                            //jsonp:'callback',
+                            success: function (result) {
+                                if(result.rspCode==="200"){
+                                    selectConsumerRecordByserchForm();
+                                    $.globalMessenger().post({
+                                        message: "操作成功",//提示信息
+                                        type: 'success',//消息类型。error、info、success
+                                        hideAfter: 2,//多长时间消失
+                                        showCloseButton:true,//是否显示关闭按钮
+                                        hideOnNavigate: true //是否隐藏导航
+                                    });
+                                }else {
+                                    $.globalMessenger().post({
+                                        message: "操作失败",//提示信息
+                                        type: 'error',//消息类型。error、info、success
+                                        hideAfter: 2,//多长时间消失
+                                        showCloseButton:true,//是否显示关闭按钮
+                                        hideOnNavigate: true //是否隐藏导航
+                                    });
+                                }
+                                dialog.close();
+                            },
+                            error: function () {
+                                $.globalMessenger().post({
+                                    message: "系统异常",//提示信息
+                                    type: 'error',//消息类型。error、info、success
+                                    hideAfter: 2,//多长时间消失
+                                    showCloseButton:true,//是否显示关闭按钮
+                                    hideOnNavigate: true //是否隐藏导航
+                                });
+                                dialog.close();
+                            }
+                        });
+                    }
+                },]
+        });
+
     }
 
     function toggleText(e, value, row, index) {
@@ -330,7 +402,7 @@
                                         hideOnNavigate: true //是否隐藏导航
                                     });
                                     dialog.close();
-                                    selectBySerchForm();
+                                    selectConsumerRecordByserchForm();
                                 } else {
                                     $.globalMessenger().post({
                                         message: "操作失败",//提示信息
@@ -370,7 +442,6 @@
         var jsonObj = {};
         var param = formData.split("&");
         for (var i = 0; param != null && i < param.length; i++) {
-            debugger;
             var para = param[i].split("=");
             jsonObj[para[0]] = para[1];
         }

@@ -120,7 +120,7 @@
         <if test="medicine != null and medicine != ''">
             <bind name="medicine" value="'%' + medicine + '%'" />
         </if>
-        select * from consumer_record WHERE 1=1
+        select * from consumer_record WHERE 1=1 and state =1
         <if test="memberId != null and memberId != ''">
             and name =#{memberId}
         </if>
@@ -197,5 +197,13 @@
         #{createUser}
         )
     </insert>
+
+    <update id="deleteConsumerRecord" parameterType="string">
+        UPDATE consumer_record SET state=0 where id IN
+        <foreach collection="list" index="index" item="item"
+                 separator="," open="(" close=")">
+            #{item,jdbcType=BIGINT}
+        </foreach>
+    </update>
 
 </mapper>

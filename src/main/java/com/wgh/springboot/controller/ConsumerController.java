@@ -99,4 +99,17 @@ public class ConsumerController extends BaseController {
         }
         return jsonResult;
     }
+    @RequestMapping("/deleteConsumerRecord")
+    @ResponseBody
+    public JsonResult deleteConsumerRecord(@RequestBody List<String> idList) {
+        JsonResult jsonResult = initJsonResult();
+        logger.info(JSON.toJSONString(idList));
+        Integer count = consumerService.deleteConsumerRecord(idList);
+        if (count == 0) {
+            logger.info("/consumer/deleteConsumerRecord : 删除流水记录失败   " + JSON.toJSONString(idList));
+            jsonResult.setRspCode("201");
+            jsonResult.setMsg("删除流水记录失败");
+        }
+        return jsonResult;
+    }
 }

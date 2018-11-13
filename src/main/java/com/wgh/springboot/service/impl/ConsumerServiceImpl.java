@@ -121,5 +121,16 @@ public class ConsumerServiceImpl implements ConsumerService {
             }
         }
     }
+
+    @Override
+    public Integer deleteConsumerRecord(List<String> idList) {
+        try {
+            Integer count = consumerMapper.deleteConsumerRecord(idList);
+            return count;
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            return 0;
+        }
+    }
 }
 

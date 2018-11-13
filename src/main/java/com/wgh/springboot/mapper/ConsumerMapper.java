@@ -11,15 +11,17 @@ import java.util.Map;
 public interface ConsumerMapper {
     List<Consumer> selectcConsumer(Map requestMap);
 
-    int selectMaxMemberId();
+    Integer selectMaxMemberId();
 
     Integer insertConsumer(Consumer consumer);
 
-    int updateConsumer(Consumer consumer);
+    Integer updateConsumer(Consumer consumer);
 
-    int deleteConsumer(List<String> idList);
+    Integer deleteConsumer(List<String> idList);
 
     List<ConsumerRecord> selectConsumerRecord(Map requestMap);
 
     Boolean insertConsumerRecord(ConsumerRecord consumerRecord);
+
+    Integer deleteConsumerRecord(List<String> idList);
 }

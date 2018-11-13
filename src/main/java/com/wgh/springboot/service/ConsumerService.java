@@ -20,4 +20,6 @@ public interface ConsumerService {
     List selectConsumerRecord(Map requestMap);
 
     String insertConsumerRecord(ConsumerRecord consumerRecord);
+
+    Integer deleteConsumerRecord(List<String> idList);
 }
