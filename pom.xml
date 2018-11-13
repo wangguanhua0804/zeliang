@@ -126,36 +126,58 @@
     </dependencies>
 
 
-    <!--<build>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <version>3.1</version>
-                <configuration>
-                    &lt;!&ndash; get all project dependencies &ndash;&gt;
-                    <descriptorRefs>
-                        <descriptorRef>jar-with-dependencies</descriptorRef>
-                    </descriptorRefs>
-                    &lt;!&ndash; MainClass in mainfest make a executable jar &ndash;&gt;
-                    <archive>
-                        <manifest>
-                            <mainClass>util.Microseer</mainClass>
-                        </manifest>
-                    </archive>
+    <build>
 
+        <plugins>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <!-- 指定SpringBoot程序的main函数入口类 -->
+                    <mainClass>com.wgh.springboot.Application</mainClass>
                 </configuration>
+
                 <executions>
                     <execution>
-                        <id>make-assembly</id>
-                        &lt;!&ndash; bind to the packaging phase &ndash;&gt;
-                        <phase>package</phase>
                         <goals>
-                            <goal>single</goal>
+                            <goal>repackage</goal>
                         </goals>
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                    <compilerArguments>
+                        <!-- 打包本地jar包 -->
+                        <extdirs>${project.basedir}/lib</extdirs>
+                    </compilerArguments>
+                </configuration>
+            </plugin>
         </plugins>
-    </build>-->
+
+        <!-- 打包所有jar包 -->
+        <resources>
+            <resource>
+                <directory>lib</directory>
+                <targetPath>BOOT-INF/lib/</targetPath>
+                <includes>
+                    <include>**/*.jar</include>
+                </includes>
+            </resource>
+
+            <!-- 某些情况下，打包后运行不起来需要打开注释 -->
+            <!-- <resource>
+                <directory>src/main/resources</directory>
+                <targetPath>BOOT-INF/classes/</targetPath>
+            </resource> -->
+        </resources>
+
+    </build>
+
 </project>
