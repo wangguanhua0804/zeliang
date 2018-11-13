@@ -6,11 +6,12 @@
 </head>
 <body>
 <div style="margin-top: 10px">
-    <form  id="serchFormForConsumerRecord" class="form-inline">
+    <form id="serchFormForConsumerRecord" class="form-inline">
         <div>
             <div class="form-group " style="width: 13%">
-            <label for="member" style="width: 30%">会员编号</label>
-            <input type="text" style="width: 65%" class="form-control" id="member" name="memberId" placeholder="会员编号"/>
+                <label for="member" style="width: 30%">会员编号</label>
+                <input type="text" style="width: 65%" class="form-control" id="member" name="memberId"
+                       placeholder="会员编号"/>
             </div>
             <div class="form-group" style="width: 13%">
                 <label for="name" style="width: 30%">姓名</label>
@@ -22,25 +23,30 @@
             </div>
             <div class="form-group " style="width: 13%">
                 <label for="beginTime" style="width: 30%">开始时间</label>
-                <input type="text" style="width: 65%" class="form-control" id="beginTime" name="beginTime" placeholder="开始时间"/>
+                <input type="text" style="width: 65%" class="form-control" id="beginTime" name="beginTime"
+                       placeholder="开始时间"/>
             </div>
             <div class="form-group " style="width: 13%">
                 <label for="endTime" style="width: 30%">结束时间</label>
-                <input type="text" style="width: 65%" class="form-control" id="endTime" name="endTime" placeholder="结束时间"/>
+                <input type="text" style="width: 65%" class="form-control" id="endTime" name="endTime"
+                       placeholder="结束时间"/>
             </div>
         </div>
         <div style="margin-top: 10px">
             <div class="form-group " style="width: 13%">
                 <label for="symptom" style="width: 30%">症状</label>
-                <input type="text" style="width: 65%" class="form-control" id="symptom" name="symptom" placeholder="症状"/>
-            </div>
-            <div class="form-group " style="width: 13%" >
-                <label for="medicine" style="width: 30%">药物</label>
-                <input type="text" style="width: 65%" class="form-control" id="medicine" name="medicine" placeholder="药物"/>
+                <input type="text" style="width: 65%" class="form-control" id="symptom" name="symptom"
+                       placeholder="症状"/>
             </div>
             <div class="form-group " style="width: 13%">
-                <label for="careteUser" style="width: 30%">创建人</label>
-                <input type="text" style="width: 65%" class="form-control" id="careteUser" name="careteUser" placeholder="创建人"/>
+                <label for="medicine" style="width: 30%">药物</label>
+                <input type="text" style="width: 65%" class="form-control" id="medicine" name="medicine"
+                       placeholder="药物"/>
+            </div>
+            <div class="form-group " style="width: 13%">
+                <label for="createUser" style="width: 30%">创建人</label>
+                <input type="text" style="width: 65%" class="form-control" id="createUser" name="createUser"
+                       placeholder="创建人"/>
             </div>
         </div>
     </form>
@@ -73,30 +79,33 @@
 </body>
 </html>
 <!-- JQuery BootStrap插件-->
-<script src="/js/jquery-3.3.1.min.js"></script>
-<script src="/bootstrap/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+<script src="/static/js/jquery-3.3.1.min.js"></script>
+<script src="/static/bootstrap/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
 
 <!-- table插件 表格生成-->
-<script src="/bootstrap-table/bootstrap-table.js"></script>
-<script src="/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
-<link rel="stylesheet" href="/bootstrap-table/bootstrap-table.css"/>
+<script src="/static/bootstrap-table/bootstrap-table.js"></script>
+<script src="/static/bootstrap-table/locale/bootstrap-table-zh-CN.js"></script>
+<link rel="stylesheet" href="/static/bootstrap-table/bootstrap-table.css"/>
 
 <!-- dialog插件 弹出dialog页面-->
-<script src="/bootstrap-dialog/js/bootstrap-dialog.js"></script>
-<link rel="stylesheet" href="/bootstrap-dialog/css/bootstrap-dialog.css"/>
+<script src="/static/bootstrap-dialog/js/bootstrap-dialog.js"></script>
+<link rel="stylesheet" href="/static/bootstrap-dialog/css/bootstrap-dialog.css"/>
 <!-- messenger插件   消息提示-->
-<script src="/messenger/js/messenger.js"></script>
-<link rel="stylesheet" href="/messenger/css/messenger.css"/>
-<link rel="stylesheet" href="/messenger/css/messenger-theme-future.css"/>
+<script src="/static/messenger/js/messenger.js"></script>
+<link rel="stylesheet" href="/static/messenger/css/messenger.css"/>
+<link rel="stylesheet" href="/static/messenger/css/messenger-theme-future.css"/>
 
 <!-- bootbox插件 弹出框-->
-<script src="/bootbox/bootbox.js"></script>
+<script src="/static/bootbox/bootbox.js"></script>
+
 <script type="text/javascript">
     /*<![CDATA[*/
     function clearTableInputForConsumerRecord() {
         $("#serchFormForConsumerRecord input").val("");
     }
+
     var textLength = 30;
+
     function bigTextFormatter(value, row, index) {
         if (value != null && value.length > 30) {
             return '<span class="big-text">' + value.substr(0, textLength) + '...</span> <a class="toggle" href="javascript:void(0)" rel="external nofollow" rel="external nofollow" rel="external nofollow" >查看</a>';
@@ -106,41 +115,40 @@
 
     function toggleText(e, value, row, index) {
 
-       /* if (value == null) {
-            return false;
-        }
+        /* if (value == null) {
+             return false;
+         }
 
-        var $tecParam = $(this).prev(".big-text"),
-            $toggle = $(this);
+         var $tecParam = $(this).prev(".big-text"),
+             $toggle = $(this);
 
-        if ($tecParam.text().length > textLength + 5) { //折叠
-            $tecParam.text(value.substr(0, textLength) + "...");
-            $toggle.text("查看");
-        }
-        else if (value.length > textLength + 5 && $tecParam.text().length <= textLength + 5) {  //查看
-            $tecParam.text(value);
-            $toggle.text("折叠");
-        }*/
+         if ($tecParam.text().length > textLength + 5) { //折叠
+             $tecParam.text(value.substr(0, textLength) + "...");
+             $toggle.text("查看");
+         }
+         else if (value.length > textLength + 5 && $tecParam.text().length <= textLength + 5) {  //查看
+             $tecParam.text(value);
+             $toggle.text("折叠");
+         }*/
 
 
-            BootstrapDialog.show({
-                title: '药物信息',
-                message: function(dialog) {
-                    var $content = $(
-                        '<textarea style="width: 100%;height: 300px">'+value+'</textarea>'
-                        );
-                    return $content;
-                },
-                buttons: [
-                    {
-                        id: 'btn-1',
-                        label: '关闭',
-                        action: function(dialog) {
-
-                            dialog.close();
-                        }
-                    }]
-            });
+        BootstrapDialog.show({
+            title: '详细信息',
+            message: function (dialog) {
+                var $content = $(
+                    '<textarea style="width: 100%;height: 300px">' + value + '</textarea>'
+                );
+                return $content;
+            },
+            buttons: [
+                {
+                    id: 'btn-1',
+                    label: '关闭',
+                    action: function (dialog) {
+                        dialog.close();
+                    }
+                }]
+        });
     }
 
     $(function () {
@@ -153,7 +161,8 @@
         $.ajax({
             async: false,
             type: "POST",
-            url: "/consumer/selectConsumerRecord",
+            url: "/api/consumer/selectConsumerRecord",
+            headers: {"token": localStorage.getItem("token")},
             contentType: "application/json;charset=utf-8",
             dataType: "json",
             data: JSON.stringify(obj),
@@ -162,11 +171,18 @@
                 data = msg.rows;
             },
             error: function () {
-                alert("错误");
+                $.globalMessenger().post({
+                    message: "操作失败",//提示信息
+                    type: 'error',//消息类型。error、info、success
+                    hideAfter: 2,//多长时间消失
+                    showCloseButton: true,//是否显示关闭按钮
+                    hideOnNavigate: true //是否隐藏导航
+                });
             }
         });
         $('#dataTableForConsumerRecord').bootstrapTable('destroy');   //动态加载表格之前，先销毁表格
         $('#dataTableForConsumerRecord').bootstrapTable({
+            height:$(window).height()*0.8,
             toolbar: '#toolbar',
             singleSelect: false,
             clickToSelect: true,
@@ -177,12 +193,12 @@
             uniqueId: "id",                     //每一行的唯一标识，一般为主键列
             pageSize: 20,
             pageNumber: 1,
-            pageList: "[10, 25, 50, 100]",
+            pageList: "[10, 15, 20, 30]",
             smartDisplay: false,
             showToggle: true,
             showRefresh: true,
             showColumns: true,
-            search: true,
+            search: true, //是否显示搜索框,用户页面内搜索
             pagination: true,
             data: data,
             columns: [{
@@ -191,13 +207,13 @@
                 field: 'id',
                 title: '客户id',
                 switchable: true,
-                width:30,
+                width: 30,
                 sortable: true //排序
             }, {
                 field: 'memberId',
                 title: '会员编号',
                 switchable: true,
-                width:80,
+                width: 80,
             }, {
                 field: 'name',
                 title: '姓名',
@@ -254,7 +270,7 @@
                 switchable: true,
                 sortable: true //排序
             }, {
-                field: 'careteUser',
+                field: 'createUser',
                 title: '创建人',
                 switchable: true
             }, {
@@ -265,6 +281,88 @@
         });
     }
 
+    function openAddDialogForConsumerRecord() {
+        BootstrapDialog.show({
+            type: BootstrapDialog.TYPE_INFO,
+            title: '新增记录',
+            message: function (dialog) {
+                var $content = $(
+                    '<form class="form-horizontal" role="form" id="addConsumerRecordForm" style="text-align: left;vertical-align: middle;>' +
+                    '<div class="form-group">' +
+                    '<input type="hidden" id="createUser"  name="createUser" value="'+localStorage.getItem("userName")+'" />'+
+                    '<ul class="list-group">' +
+                    ' <li class="list-group-item">会员编号<input type="text" class="form-control" id="memberId" name="memberId"  style="line-height: 30px"/></li>' +
+                    ' <li class="list-group-item">姓名<input type="text" class="form-control" id="name" name="name"  style="line-height: 30px"/></li>' +
+                    ' <li class="list-group-item">手机号码<input type="text" class="form-control" id="mobile" name="mobile"  style="line-height: 30px"/></li>' +
+                    ' <li class="list-group-item">身份证号<input type="text" class="form-control" id="idCard" name="idCard"  style="line-height: 30px"/></li>' +
+                    ' <li class="list-group-item">症状<textarea  class="form-control" id="symptom" name="symptom"  style="line-height: 30px"/></li>' +
+                    ' <li class="list-group-item">药物<textarea  class="form-control" id="medicine" name="medicine"  style="line-height: 30px"/></li>' +
+                    ' <li class="list-group-item">金额 （单位:元）<input type="text" class="form-control" id="money" name="money" placeholder="精确到分 如:一元 1.00   二元五毛 2.50,  十元五毛三分10.53" style="line-height: 30px"/></li>' +
+                    '</ul>'+
+                    '</div>'+
+
+                    '</form>');
+
+                return $content;
+            },
+            buttons: [
+                {
+                    id: 'addConsumerRecordBtn',
+                    label: '新增流水',
+                    action: function (dialog) {
+                        var data = getFormData("addConsumerRecordForm");
+                        $.ajax({
+                            async: false,
+                            type: "POST",
+                            url: "/api/consumer/addConsumerRecord",
+                            headers: {"token": localStorage.getItem("token")},
+                            contentType: "application/json;charset=utf-8",
+                            dataType: "json",
+                            data: JSON.stringify(data),
+                            //jsonp:'callback',
+                            success: function (result) {
+                                if (result.rspCode === "200") {
+                                    $.globalMessenger().post({
+                                        message: "操作成功",//提示信息
+                                        type: 'success',//消息类型。error、info、success
+                                        hideAfter: 2,//多长时间消失
+                                        showCloseButton: true,//是否显示关闭按钮
+                                        hideOnNavigate: true //是否隐藏导航
+                                    });
+                                    dialog.close();
+                                    selectBySerchForm();
+                                } else {
+                                    $.globalMessenger().post({
+                                        message: "操作失败",//提示信息
+                                        type: 'error',//消息类型。error、info、success
+                                        hideAfter: 2,//多长时间消失
+                                        showCloseButton: true,//是否显示关闭按钮
+                                        hideOnNavigate: true //是否隐藏导航
+                                    });
+                                }
+                            },
+                            error: function () {
+                                $.globalMessenger().post({
+                                    message: "系统异常",//提示信息
+                                    type: 'error',//消息类型。error、info、success
+                                    hideAfter: 2,//多长时间消失
+                                    showCloseButton: true,//是否显示关闭按钮
+                                    hideOnNavigate: true //是否隐藏导航
+                                });
+                            }
+                        });
+                    }
+                }, {
+                    id: 'btn-1',
+                    label: '关闭',
+                    action: function (dialog) {
+                        dialog.close();
+                    }
+                }]
+        });
+
+    }
+
     function getFormData(formId) {
         var formData = decodeURIComponent($("#" + formId).serialize());
         formData = formData.replace(/\+/g, " ");//序列化会导致空格变成加号  如  "a a" 序列化后变成 "a+a" ,此处是转化成空格
@@ -272,6 +370,7 @@
         var jsonObj = {};
         var param = formData.split("&");
         for (var i = 0; param != null && i < param.length; i++) {
+            debugger;
             var para = param[i].split("=");
             jsonObj[para[0]] = para[1];
         }

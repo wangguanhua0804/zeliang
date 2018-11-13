@@ -13,8 +13,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
 public class InterceptorConfig extends WebMvcConfigurerAdapter {
 
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(new WghInterceptor()).addPathPatterns("/**")
-                .excludePathPatterns("/to/login")
-                .excludePathPatterns("/sys/login").excludePathPatterns("/to/home");
+        registry.addInterceptor(new WghInterceptor()).addPathPatterns("/api/**")
+                .excludePathPatterns("/api/sys/login");
     }
 }

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.Map;
-@RequestMapping("/sys")
+@RequestMapping("/api/sys")
 @Controller
 public class SysController extends BaseController {
 

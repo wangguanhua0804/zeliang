@@ -1,12 +1,13 @@
 package com.wgh.springboot.service;
 
 import com.wgh.springboot.domain.Consumer;
+import com.wgh.springboot.domain.ConsumerRecord;
 
 import java.util.List;
 import java.util.Map;
 
 public interface ConsumerService {
-    List selectcConsumer(Map requestMap);
+    List<Consumer> selectConsumer(Map requestMap);
 
     int selectMaxMemberId();
 
@@ -17,4 +18,6 @@ public interface ConsumerService {
     Integer deleteConsumer(List<String> idList);
 
     List selectConsumerRecord(Map requestMap);
+
+    String insertConsumerRecord(ConsumerRecord consumerRecord);
 }

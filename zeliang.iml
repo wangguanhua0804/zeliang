@@ -16,9 +16,6 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" name="Maven: net.sf.ehcache:ehcache-core:2.4.3" level="project" />
-    <orderEntry type="library" name="Maven: commons-collections:commons-collections:3.2.1" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.commons:commons-lang3:3.3.2" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-web:1.4.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter:1.4.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-logging:1.4.0.RELEASE" level="project" />
@@ -96,7 +93,7 @@
     <orderEntry type="module-library">
       <library name="Maven: com.alibaba:jconsole:1.8.0">
         <CLASSES>
-          <root url="jar://D:/myProgram/java/jdk1.8/lib/jconsole.jar!/" />
+          <root url="jar://C:/Program Files/Java/jdk1.8.0_91/lib/jconsole.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />
@@ -105,7 +102,7 @@
     <orderEntry type="module-library">
       <library name="Maven: com.alibaba:tools:1.8.0">
         <CLASSES>
-          <root url="jar://D:/myProgram/java/jdk1.8/lib/tools.jar!/" />
+          <root url="jar://C:/Program Files/Java/jdk1.8.0_91/lib/tools.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

@@ -20,4 +20,6 @@ public interface ConsumerMapper {
     int deleteConsumer(List<String> idList);
 
     List<ConsumerRecord> selectConsumerRecord(Map requestMap);
+
+    Boolean insertConsumerRecord(ConsumerRecord consumerRecord);
 }

@@ -146,5 +146,56 @@
             and createTime &lt;#{endTime}
         </if>
     </select>
+    <insert id="insertConsumerRecord" parameterType="com.wgh.springboot.domain.ConsumerRecord" useGeneratedKeys="true" keyProperty="id">
+        INSERT INTO consumer_record  (
+        <if test="memberId != null and memberId != ''">
+            memberId ,
+        </if>
+        <if test="name != null and name != ''">
+            name ,
+        </if>
+        <if test="mobile != null and mobile != ''">
+            mobile ,
+        </if>
+        <if test="idCard != null and idCard != ''">
+            idCard ,
+        </if>
+        <if test="symptom != null and symptom != ''">
+            symptom ,
+        </if>
+        <if test="medicine != null and medicine != ''">
+            medicine ,
+        </if>
+        <if test="money != null and money != ''">
+            money ,
+        </if>
+        createTime,
+        createUser
+        ) VALUES (
+        <if test="memberId != null and memberId != ''">
+            #{memberId} ,
+        </if>
+        <if test="name != null and name != ''">
+            #{name} ,
+        </if>
+        <if test="mobile != null and mobile != ''">
+            #{mobile} ,
+        </if>
+        <if test="idCard != null and idCard != ''">
+            #{idCard} ,
+        </if>
+        <if test="symptom != null and symptom != ''">
+            #{symptom} ,
+        </if>
+        <if test="medicine != null and medicine != ''">
+            #{medicine },
+        </if>
+        <if test="money != null and money != ''">
+            #{money },
+        </if>
+        now(),
+        #{createUser}
+        )
+    </insert>
 
 </mapper>

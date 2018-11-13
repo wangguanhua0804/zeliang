@@ -5,11 +5,13 @@ import com.wgh.springboot.domain.Consumer;
 import com.wgh.springboot.domain.ConsumerRecord;
 import com.wgh.springboot.mapper.ConsumerMapper;
 import com.wgh.springboot.service.ConsumerService;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,7 +22,7 @@ public class ConsumerServiceImpl implements ConsumerService {
     private ConsumerMapper consumerMapper;
 
     @Override
-    public List selectcConsumer(Map requestMap) {
+    public List<Consumer> selectConsumer(Map requestMap) {
         List<Consumer> consumerList = consumerMapper.selectcConsumer(requestMap);
         return consumerList;
     }
@@ -28,7 +30,7 @@ public class ConsumerServiceImpl implements ConsumerService {
 
     @Override
     public int selectMaxMemberId() {
-        int maxMemberId = consumerMapper.selectMaxMemberId();
+        Integer maxMemberId = consumerMapper.selectMaxMemberId();
         return maxMemberId;
     }
 
@@ -75,6 +77,48 @@ public class ConsumerServiceImpl implements ConsumerService {
     public List selectConsumerRecord(Map requestMap) {
         List<ConsumerRecord> consumerRecordList = consumerMapper.selectConsumerRecord(requestMap);
         return consumerRecordList;
+    }
+
+    @Override
+    public String insertConsumerRecord(ConsumerRecord consumerRecord) {
+        if(consumerRecord==null){
+            return "流水不能为空";
+        }
+        //memberId为空则创建客户并创建流水
+        if(StringUtils.isEmpty(consumerRecord.getMemberId())){
+            Consumer consumer=new Consumer();
+            consumer.setName(consumerRecord.getName());
+            consumer.setIdCard(consumerRecord.getIdCard());
+            consumer.setMobile(consumerRecord.getMobile());
+            consumer.setCreateUser(consumerRecord.getCreateUser());
+            int maxMemberId = consumerMapper.selectMaxMemberId();
+            consumer.setMemberId(maxMemberId+1+"");
+            Integer count=consumerMapper.insertConsumer(consumer);
+            if(count==1){
+                Boolean result =consumerMapper.insertConsumerRecord(consumerRecord);
+                if (result){
+                    return "";
+                }
+                return "新增客户成功,流水失败";
+            }
+            return "客户插入失败";
+
+        }else{
+            //memberId不为空则根据这个查询客户是否存在,存在的话对流水进行赋值并插入流水,不存在则返回
+            Map<String,String> paramMap =new HashMap<>();
+            paramMap.put("memberId",consumerRecord.getMemberId());
+            List<Consumer> consumersList = consumerMapper.selectcConsumer(paramMap);
+            if (consumersList.size()>0){
+                Consumer consumer = consumersList.get(0);
+                consumerRecord.setMobile(consumer.getMobile());
+                consumerRecord.setName(consumer.getName());
+                consumerRecord.setIdCard(consumer.getIdCard());
+                consumerMapper.insertConsumerRecord(consumerRecord);
+                return "";
+            }else {
+                return "会员编号不存在,请确认后输入";
+            }
+        }
     }
 }
 

@@ -27,10 +27,10 @@
                     <div class="row" style="height:94%;width: 100%;position: absolute;left: 0;top: 6%">
                         <div class="col-sm-2" style="height:100%;width: 10%;">
                             <ul class="list-group text-center" style="height:100%;width: 100%;">
-                                <a class="list-group-item" data-addtab="consumerInfo" data-ajax="true" data-url="/to/consumerInfo">
+                                <a class="list-group-item" data-addtab="consumerInfo" data-ajax="true" data-url="consumerInfo.html">
                                     客户信息
                                 </a>
-                                <a class="list-group-item" data-addtab="consumerRecord" data-ajax="true" data-url="/to/consumerRecord">
+                                <a class="list-group-item" data-addtab="consumerRecord" data-ajax="true" data-url="consumerRecord.html">
                                     客户流水
                                 </a>
                                 <a class="list-group-item" data-addtab="message" data-content="Customize the content" data-url="example/ajax/mailbox.txt">
@@ -86,14 +86,14 @@
 
 </body>
 </html>
-<script src="/js/jquery-3.3.1.min.js"></script>
-<script src="/bootstrap/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
-<link rel="stylesheet" href="/bootstrap/bootstrap-3.3.7-dist/css/bootstrap.css"/>
-<link href="/bootstrap-addTabs/example/theme/css/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css"/>
-<link href="/bootstrap-addTabs/bootstrap.addtabs.css" media="screen" rel="stylesheet" type="text/css"/>
-<script src="/bootstrap-addTabs/example/theme/js/jquery.min.js"></script>
-<script src="/bootstrap-addTabs/example/theme/js/bootstrap.min.js"></script>
-<script src="/bootstrap-addTabs/bootstrap.addtabs.js"></script>
+<script src="/static/js/jquery-3.3.1.min.js"></script>
+<script src="/static/bootstrap/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
+<link rel="stylesheet" href="/static/bootstrap/bootstrap-3.3.7-dist/css/bootstrap.css"/>
+<link href="/static/bootstrap-addTabs/example/theme/css/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css"/>
+<link href="/static/bootstrap-addTabs/bootstrap.addtabs.css" media="screen" rel="stylesheet" type="text/css"/>
+<script src="/static/bootstrap-addTabs/example/theme/js/jquery.min.js"></script>
+<script src="/static/bootstrap-addTabs/example/theme/js/bootstrap.min.js"></script>
+<script src="/static/bootstrap-addTabs/bootstrap.addtabs.js"></script>
 <script type="text/javascript">
     $(function () {
         $('#closeAll').click(function () {
@@ -104,7 +104,5 @@
 <script type="text/javascript">
    $(function(){
        $("#userName").html(localStorage.getItem("userName"));
-       alert(localStorage.getItem("userAll").user);
-       alert(localStorage.getItem("token"));
    });
 </script>

@@ -14,7 +14,7 @@ public class ConsumerRecord implements Serializable {
     private String createTime;
     private String beginTime;
     private String endTime;
-    private String careteUser;
+    private String createUser;
     private String lastUpdateTime;
 
     public String getId() {
@@ -73,6 +73,14 @@ public class ConsumerRecord implements Serializable {
         this.medicine = medicine;
     }
 
+    public String getCreateUser() {
+        return createUser;
+    }
+
+    public void setCreateUser(String createUser) {
+        this.createUser = createUser;
+    }
+
     public String getMoney() {
         return money;
     }
@@ -89,13 +97,6 @@ public class ConsumerRecord implements Serializable {
         this.createTime = createTime;
     }
 
-    public String getCareteUser() {
-        return careteUser;
-    }
-
-    public void setCareteUser(String careteUser) {
-        this.careteUser = careteUser;
-    }
 
     public String getLastUpdateTime() {
         return lastUpdateTime;

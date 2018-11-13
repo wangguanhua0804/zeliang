@@ -4,7 +4,7 @@ public class JsonResult {
     private String rspCode;
     private Object body;
     private String msg;
-    private String total;
+    private int total;
     private Object rows;
 
     public String getRspCode() {
@@ -31,11 +31,11 @@ public class JsonResult {
         this.msg = msg;
     }
 
-    public String getTotal() {
+    public int getTotal() {
         return total;
     }
 
-    public void setTotal(String total) {
+    public void setTotal(int total) {
         this.total = total;
     }
 
