@@ -7,7 +7,7 @@
 <body style="height: 100%;width:100%;position:fixed;">
 
 
-<div >
+<div>
     <!--头部菜单 -->
     <div style=" border-bottom: solid 1px silver">
         <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="height: 4%;">
@@ -16,71 +16,78 @@
                     <a class="navbar-brand" href="#">回春堂</a>
                 </div>
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#"><span  class="glyphicon glyphicon-user"></span>&nbsp;<span id="userName"></span></a></li>
-                    <li><a href="#" id="logout"><span class="glyphicon glyphicon-log-out"></span> 退出</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;<span id="userName"></span></a>
+                    </li>
+                    <li><a href="#" id="logout"><span class=" glyphicon glyphicon-off"></span> 退出</a></li>
                 </ul>
             </div>
         </nav>
     </div>
     <!-- 头部菜单end-->
     <div style="margin-top: 1px">
-                    <div class="row" style="height:94%;width: 100%;position: absolute;left: 0;top: 6%">
-                        <div class="col-sm-2" style="height:100%;width: 10%;">
-                            <ul class="list-group text-center" style="height:100%;width: 100%;">
-                                <a class="list-group-item" data-addtab="consumerInfo" data-ajax="true" data-url="consumerInfo.html">
-                                    客户信息
-                                </a>
-                                <a class="list-group-item" data-addtab="consumerRecord" data-ajax="true" data-url="consumerRecord.html">
-                                    客户流水
-                                </a>
-                                <a class="list-group-item" data-addtab="message" data-content="Customize the content" data-url="example/ajax/mailbox.txt">
-                                    <i class="glyphicon glyphicon-bullhorn">
-                                    </i>
-                                    指定内容
-                                </a>
-                                <a class="list-group-item" data-addtab="setting" data-title="Customize the title" data-url="example/ajax/mailbox.txt">
-                                    <i class="glyphicon glyphicon-cog">
-                                    </i>
-                                    指定标题
-                                </a>
-                                <a class="list-group-item" data-addtab="userMenu1" data-url="example/ajax/mailbox.txt">
-                                    用户菜单1
-                                </a>
-                                <a class="list-group-item" data-addtab="userMenu2" data-target="#tabs2" data-url="example/ajax/button.html">
-                                    target2
-                                </a>
-                                <a class="list-group-item" data-addtab="sina" data-url="http://sina.com.cn">
-                                    新浪
-                                </a>
-                                <a class="list-group-item" data-addtab="baidu" data-url="http://baidu.com">
-                                    百度
-                                </a>
-                                <a class="list-group-item" id="closeAll">
-                                    关闭所有
-                                </a>
-                            </ul>
-                        </div>
-                        <div class="col-sm-10" style="height:100%;width: 90%;">
-                            <div>
-                                <!-- Nav tabs -->
-                                <ul class="nav nav-tabs" id="tabs1" role="tablist">
-                                    <li class="active" role="presentation">
-                                        <a aria-controls="home" data-toggle="tab" href="#home" role="tab">
-                                            首页
-                                        </a>
-                                    </li>
-                                </ul>
-                                <!-- Tab panes -->
-                                <div class="tab-content">
-                                    <div class="tab-pane active" id="home" role="tabpanel">
-                                        I'm a homepage.
-                                    </div>
-                                </div>
-                            </div>
-
+        <div class="row" style="height:94%;width: 100%;position: absolute;left: 0;top: 6%">
+            <div class="col-sm-2" style="height:100%;width: 10%;">
+                <ul class="list-group text-center" style="height:100%;width: 100%;">
+                    <a class="list-group-item" data-addtab="consumerInfo" data-ajax="true" data-url="consumerInfo.html">
+                        <i class="glyphicon glyphicon-user"></i>
+                        客户信息
+                    </a>
+                    <a class="list-group-item" data-addtab="consumerRecord" data-ajax="true"
+                       data-url="consumerRecord.html">
+                        <i class="glyphicon glyphicon-list-alt"></i>
+                        客户流水
+                    </a>
+                    <a class="list-group-item" data-addtab="message" data-content="Customize the content"
+                       data-url="example/ajax/mailbox.txt">
+                        <i class="glyphicon glyphicon-bullhorn">
+                        </i>
+                        指定内容
+                    </a>
+                    <a class="list-group-item" data-addtab="setting" data-title="Customize the title"
+                       data-url="example/ajax/mailbox.txt">
+                        <i class="glyphicon glyphicon-cog">
+                        </i>
+                        指定标题
+                    </a>
+                    <a class="list-group-item" data-addtab="userMenu1" data-url="example/ajax/mailbox.txt">
+                        用户菜单1
+                    </a>
+                    <a class="list-group-item" data-addtab="userMenu2" data-target="#tabs2"
+                       data-url="example/ajax/button.html">
+                        target2
+                    </a>
+                    <a class="list-group-item" data-addtab="sina" data-url="http://sina.com.cn">
+                        新浪
+                    </a>
+                    <a class="list-group-item" data-addtab="baidu" data-url="http://baidu.com">
+                        百度
+                    </a>
+                    <a class="list-group-item" id="closeAll">
+                        关闭所有
+                    </a>
+                </ul>
+            </div>
+            <div class="col-sm-10" style="height:100%;width: 90%;">
+                <div>
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs" id="tabs1" role="tablist">
+                        <li class="active" role="presentation">
+                            <a aria-controls="home" data-toggle="tab" href="index" role="tab">
+                                首页
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="index" role="tabpanel">
+                            aaa
                         </div>
                     </div>
                 </div>
+
+            </div>
+        </div>
+    </div>
 </div>
 
 
@@ -89,11 +96,15 @@
 <script src="/static/js/jquery-3.3.1.min.js"></script>
 <script src="/static/bootstrap/bootstrap-3.3.7-dist/js/bootstrap.js"></script>
 <link rel="stylesheet" href="/static/bootstrap/bootstrap-3.3.7-dist/css/bootstrap.css"/>
-<link href="/static/bootstrap-addTabs/example/theme/css/bootstrap.min.css" media="screen" rel="stylesheet" type="text/css"/>
+<link href="/static/bootstrap-addTabs/example/theme/css/bootstrap.min.css" media="screen" rel="stylesheet"
+      type="text/css"/>
 <link href="/static/bootstrap-addTabs/bootstrap.addtabs.css" media="screen" rel="stylesheet" type="text/css"/>
 <script src="/static/bootstrap-addTabs/example/theme/js/jquery.min.js"></script>
 <script src="/static/bootstrap-addTabs/example/theme/js/bootstrap.min.js"></script>
 <script src="/static/bootstrap-addTabs/bootstrap.addtabs.js"></script>
+<!-- dialog插件 弹出dialog页面-->
+<link rel="stylesheet" href="/static/bootstrap-dialog/css/bootstrap-dialog.css"/>
+<script src="/static/bootstrap-dialog/js/bootstrap-dialog.js"></script>
 <script type="text/javascript">
     $(function () {
         $('#closeAll').click(function () {
@@ -102,29 +113,63 @@
     })
 </script>
 <script type="text/javascript">
-   $(function(){
-       $("#userName").html(localStorage.getItem("userName"));
-       $("#logout").click(function () {
-           var token=localStorage.getItem("token");
-           if(token===null||token===""||!token){
-               localStorage.clear();
-               window.location.href="login.html";
-               return;
-           }
-           token={"token":localStorage.getItem("token")};
-           $.ajax({
-               async: false,
-               type: "POST",
-               url: "/api/sys/logout",
-               headers: {"token": localStorage.getItem("token")},
-               contentType: "application/json;charset=utf-8",
-               dataType: "json",
-               data: JSON.stringify(token),
-               success:function () {
-                   localStorage.clear();
-                   window.location.href="login.html";
-               }
-           })
-       })
-   });
+    $(function () {
+        $("#userName").html(localStorage.getItem("userName"));
+        $("#userName").click(function () {
+            BootstrapDialog.show({
+                type: BootstrapDialog.TYPE_INFO,
+                size: BootstrapDialog.SIZE_SMALL,
+                index:"1",
+                title: '系统用户信息',
+                message: function (dialog) {
+                    var sysUser = localStorage.getItem("sysUser");
+                    var form= $(
+                        '<form class="form-horizontal" role="form" id="updateConsumerForm" style="text-align: left;vertical-align: middle;>'+
+                        '<div class="form-group">' +
+                        '<ul class="list-group">'+
+                        '<input type="hidden" id="id" name="id" value="'+localStorage.getItem("userId")+'">'+
+                        ' <li class="list-group-item">账号：'+localStorage.getItem("user")+'</li>'+
+                        ' <li class="list-group-item">姓名：'+localStorage.getItem("userName")+'</li>'+
+                        ' <li class="list-group-item">角色：'+localStorage.getItem("role_name")+'</li>'+
+                        ' <li class="list-group-item">身份证号：'+localStorage.getItem("idCard")+'</li>'+
+                        ' <li class="list-group-item">手机号码：'+localStorage.getItem("mobile")+'</li>'+
+                        '</ul>'+
+                        '</div>'+
+                        '</form>');
+                    return form;
+                },
+                buttons: [
+                    {
+                        id: 'btn-1',
+                        label: '关闭',
+                        action: function (dialog) {
+                            dialog.close();
+                        }
+                    }]
+            });
+        })
+    })
+    $("#logout").click(function () {
+        var token = localStorage.getItem("token");
+        if (token === null || token === "" || !token) {
+            localStorage.clear();
+            window.location.href = "login.html";
+            return;
+        }
+        token = {"token": localStorage.getItem("token")};
+        $.ajax({
+            async: false,
+            type: "POST",
+            url: "/api/sys/logout",
+            headers: {"token": localStorage.getItem("token")},
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            data: JSON.stringify(token),
+            success: function () {
+                localStorage.clear();
+                window.location.href = "login.html";
+            }
+        })
+    })
+
 </script>

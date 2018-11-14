@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.wgh.springboot.mapper.SysUserMapper">
     <select id="login" parameterType="java.util.Map" resultType="com.wgh.springboot.domain.SysUser">
-        select id,user,password,user_name userName from sys_user where user=#{user};
+        select id,user,password,user_name userName,mobile,idCard from sys_user where user=#{user};
     </select>
     <select id="selectRoleById" parameterType="string" resultType="com.wgh.springboot.domain.SysRole">
         select t1.* from sys_role t1,sys_role_user t2 where t2.target_id=#{userId} and t1.ID=t2.role_id;
