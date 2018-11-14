@@ -81,6 +81,16 @@
     /*<![CDATA[*/
     function deleteConsumer(){
         var consumer=$("#dataTableForConsumer").bootstrapTable('getSelections');
+        if(consumer.length===0){
+            $.globalMessenger().post({
+                message: "请选中至少一条客户信息",//提示信息
+                type: 'info',//消息类型。error、info、success
+                hideAfter: 2,//多长时间消失
+                showCloseButton:true,//是否显示关闭按钮
+                hideOnNavigate: true //是否隐藏导航
+            });
+            return;
+        }
         var idArr = new Array();
         var nameArr = new Array();
         $(consumer).each(function(index,item){
@@ -118,7 +128,7 @@
                                 if(result.rspCode==="200"){
                                     selectBySerchForm();
                                     $.globalMessenger().post({
-                                        message: "操作成功",//提示信息
+                                        message: result.msg,//提示信息
                                         type: 'success',//消息类型。error、info、success
                                         hideAfter: 2,//多长时间消失
                                         showCloseButton:true,//是否显示关闭按钮
@@ -126,7 +136,7 @@
                                     });
                                 }else {
                                     $.globalMessenger().post({
-                                        message: "操作失败",//提示信息
+                                        message: result.msg,//提示信息
                                         type: 'error',//消息类型。error、info、success
                                         hideAfter: 2,//多长时间消失
                                         showCloseButton:true,//是否显示关闭按钮
@@ -154,7 +164,7 @@
 
     function editDialog() {
         var getSelections=$("#dataTableForConsumer").bootstrapTable('getSelections');
-        if(getSelections.length==0){
+        if(getSelections.length===0){
             $.globalMessenger().post({
                 message: "未选择客户信息",//提示信息
                 type: 'info',//消息类型。error、info、success
@@ -167,7 +177,7 @@
         if(getSelections.length>1){
             $.globalMessenger().post({
                 message: "只能选择一条信息进行修改",//提示信息
-                type: 'error',//消息类型。error、info、success
+                type: 'info',//消息类型。error、info、success
                 hideAfter: 2,//多长时间消失
                 showCloseButton:true,//是否显示关闭按钮
                 hideOnNavigate: true //是否隐藏导航
@@ -226,7 +236,7 @@
                             success: function (result) {
                                 if(result.rspCode==="200"){
                                     $.globalMessenger().post({
-                                        message: "操作成功",//提示信息
+                                        message: result.msg,//提示信息
                                         type: 'success',//消息类型。error、info、success
                                         hideAfter: 2,//多长时间消失
                                         showCloseButton:true,//是否显示关闭按钮
@@ -236,7 +246,7 @@
                                     selectBySerchForm();
                                 }else {
                                     $.globalMessenger().post({
-                                        message: "操作失败",//提示信息
+                                        message: result.msg,//提示信息
                                         type: 'error',//消息类型。error、info、success
                                         hideAfter: 2,//多长时间消失
                                         showCloseButton:true,//是否显示关闭按钮
@@ -317,7 +327,7 @@
                             success: function (result) {
                                 if(result.rspCode==="200"){
                                     $.globalMessenger().post({
-                                        message: "操作成功",//提示信息
+                                        message: result.msg,//提示信息
                                         type: 'success',//消息类型。error、info、success
                                         hideAfter: 2,//多长时间消失
                                         showCloseButton:true,//是否显示关闭按钮
@@ -327,7 +337,7 @@
                                     selectBySerchForm();
                                 }else {
                                     $.globalMessenger().post({
-                                        message: "操作失败",//提示信息
+                                        message: result.msg,//提示信息
                                         type: 'error',//消息类型。error、info、success
                                         hideAfter: 2,//多长时间消失
                                         showCloseButton:true,//是否显示关闭按钮
@@ -389,7 +399,13 @@
                   data=msg.rows;
                 },
                 error: function () {
-                    alert("错误");
+                    $.globalMessenger().post({
+                        message: "系统异常",//提示信息
+                        type: 'error',//消息类型。error、info、success
+                        hideAfter: 2,//多长时间消失
+                        showCloseButton:true,//是否显示关闭按钮
+                        hideOnNavigate: true //是否隐藏导航
+                    });
                 }
             });
         $('#dataTableForConsumer').bootstrapTable('destroy');   //动态加载表格之前，先销毁表格

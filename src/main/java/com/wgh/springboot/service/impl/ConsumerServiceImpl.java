@@ -86,6 +86,9 @@ public class ConsumerServiceImpl implements ConsumerService {
         }
         //memberId为空则创建客户并创建流水
         if(StringUtils.isEmpty(consumerRecord.getMemberId())){
+            if(StringUtils.isEmpty(consumerRecord.getName())||StringUtils.isEmpty(consumerRecord.getMobile())||StringUtils.isEmpty(consumerRecord.getIdCard())){
+                return "会员编号为空,则姓名、手机号、身份证号不能为空";
+            }
             Consumer consumer=new Consumer();
             consumer.setName(consumerRecord.getName());
             consumer.setIdCard(consumerRecord.getIdCard());

@@ -50,6 +50,14 @@ public class ConsumerController extends BaseController {
     @ResponseBody
     public JsonResult addConsumer(@RequestBody Consumer consumer) {
         JsonResult jsonResult = initJsonResult();
+        String name = consumer.getName();
+        String mobile = consumer.getMobile();
+        String idCard = consumer.getIdCard();
+        if(StringUtils.isEmpty(name)||StringUtils.isEmpty(mobile)||StringUtils.isEmpty(idCard)){
+            jsonResult.setRspCode("201");
+            jsonResult.setMsg("手机号、姓名、身份证号不能为空");
+            return jsonResult;
+        }
         int maxMemberId = consumerService.selectMaxMemberId();
         consumer.setMemberId(maxMemberId + 1 + "");
         Boolean result = consumerService.insertConsumer(consumer);

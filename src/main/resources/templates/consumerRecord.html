@@ -106,7 +106,7 @@
     /*<![CDATA[*/
     function editDialogForConsumerRecord() {
         var getSelections=$("#dataTableForConsumerRecord").bootstrapTable('getSelections');
-        if(getSelections.length==0){
+        if(getSelections.length===0){
             $.globalMessenger().post({
                 message: "未选择记录",//提示信息
                 type: 'info',//消息类型。error、info、success
@@ -119,7 +119,7 @@
         if(getSelections.length>1){
             $.globalMessenger().post({
                 message: "只能选择一条记录进行修改",//提示信息
-                type: 'error',//消息类型。error、info、success
+                type: 'info',//消息类型。error、info、success
                 hideAfter: 2,//多长时间消失
                 showCloseButton:true,//是否显示关闭按钮
                 hideOnNavigate: true //是否隐藏导航
@@ -177,7 +177,7 @@
                                     selectConsumerRecordByserchForm();
                                 }else {
                                     $.globalMessenger().post({
-                                        message: "操作失败",//提示信息
+                                        message: result.msg,//提示信息
                                         type: 'error',//消息类型。error、info、success
                                         hideAfter: 2,//多长时间消失
                                         showCloseButton:true,//是否显示关闭按钮
@@ -239,6 +239,16 @@
 
     function deleteConsumerRecord(){
         var consumerRecord=$("#dataTableForConsumerRecord").bootstrapTable('getSelections');
+        if(consumerRecord.length===0){
+            $.globalMessenger().post({
+                message: "请选中至少一条流水记录",//提示信息
+                type: 'info',//消息类型。error、info、success
+                hideAfter: 2,//多长时间消失
+                showCloseButton:true,//是否显示关闭按钮
+                hideOnNavigate: true //是否隐藏导航
+            });
+            return;
+        }
         var idArr = new Array();
         var nameArr = new Array();
         $(consumerRecord).each(function(index,item){
@@ -284,7 +294,7 @@
                                     });
                                 }else {
                                     $.globalMessenger().post({
-                                        message: "操作失败",//提示信息
+                                        message: result.msg,//提示信息
                                         type: 'error',//消息类型。error、info、success
                                         hideAfter: 2,//多长时间消失
                                         showCloseButton:true,//是否显示关闭按钮
@@ -369,7 +379,7 @@
             },
             error: function () {
                 $.globalMessenger().post({
-                    message: "操作失败",//提示信息
+                    message: "系统异常",//提示信息
                     type: 'error',//消息类型。error、info、success
                     hideAfter: 2,//多长时间消失
                     showCloseButton: true,//是否显示关闭按钮
@@ -530,7 +540,7 @@
                                     selectConsumerRecordByserchForm();
                                 } else {
                                     $.globalMessenger().post({
-                                        message: "操作失败",//提示信息
+                                        message: result.msg,//提示信息
                                         type: 'error',//消息类型。error、info、success
                                         hideAfter: 2,//多长时间消失
                                         showCloseButton: true,//是否显示关闭按钮
