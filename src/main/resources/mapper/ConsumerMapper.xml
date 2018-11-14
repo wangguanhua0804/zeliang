@@ -145,6 +145,9 @@
         <if test="endTime != null and endTime != ''">
             and createTime &lt;#{endTime}
         </if>
+        <if test="createUser != null and createUser != ''">
+            and createUser =#{createUser}
+        </if>
     </select>
     <insert id="insertConsumerRecord" parameterType="com.wgh.springboot.domain.ConsumerRecord" useGeneratedKeys="true" keyProperty="id">
         INSERT INTO consumer_record  (

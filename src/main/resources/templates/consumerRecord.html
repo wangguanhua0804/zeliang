@@ -22,12 +22,12 @@
             </div>
             <div class="form-group " style="width: 13%">
                 <label for="beginTime" style="width: 30%">开始时间</label>
-                <input type="text" style="width: 65%" class="form-control" id="beginTime" name="beginTime"
+                <input type="text" style="width: 65%" readonly class="form-control form_datetime" id="beginTime" name="beginTime"
                        placeholder="开始时间"/>
             </div>
             <div class="form-group " style="width: 13%">
                 <label for="endTime" style="width: 30%">结束时间</label>
-                <input type="text" style="width: 65%" class="form-control" id="endTime" name="endTime"
+                <input type="text" style="width: 65%" readonly class="form-control form_datetime" id="endTime" name="endTime"
                        placeholder="结束时间"/>
             </div>
         </div>
@@ -97,8 +97,33 @@
 <!-- bootbox插件 弹出框-->
 <script src="/static/bootbox/bootbox.js"></script>
 
+<!-- datepicker插件 时间插件-->
+<script src="/static/bootstrap-datetimepicker/js/bootstrap-datetimepicker.js"></script>
+<script src="/static/bootstrap-datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<link rel="stylesheet" href="/static/bootstrap-datetimepicker/css/bootstrap-datetimepicker.css"/>
+
 <script type="text/javascript">
     /*<![CDATA[*/
+
+    $("#beginTime").datetimepicker({
+        format: 'yyyy-mm-dd hh:ii',
+        minView:'hour',
+        language: 'zh-CN',
+        autoclose:true,
+        startDate:0
+    }).on("click",function(){
+        $("#beginTime").datetimepicker("setEndDate",$("#endTime").val())
+    });
+    $("#endTime").datetimepicker({
+        format: 'yyyy-mm-dd hh:ii',
+        minView:'hour',
+        language: 'zh-CN',
+        autoclose:true,
+        startDate:0
+    }).on("click",function(){
+        $("#endTime").datetimepicker("setStartDate",$("#beginTime").val())
+    });
+
     function clearTableInputForConsumerRecord() {
         $("#serchFormForConsumerRecord input").val("");
     }
