@@ -156,7 +156,7 @@
         var getSelections=$("#dataTableForConsumer").bootstrapTable('getSelections');
         if(getSelections.length==0){
             $.globalMessenger().post({
-                message: "未选择记录",//提示信息
+                message: "未选择客户信息",//提示信息
                 type: 'info',//消息类型。error、info、success
                 hideAfter: 2,//多长时间消失
                 showCloseButton:true,//是否显示关闭按钮
@@ -166,7 +166,7 @@
         }
         if(getSelections.length>1){
             $.globalMessenger().post({
-                message: "只能选择一条记录进行修改",//提示信息
+                message: "只能选择一条信息进行修改",//提示信息
                 type: 'error',//消息类型。error、info、success
                 hideAfter: 2,//多长时间消失
                 showCloseButton:true,//是否显示关闭按钮

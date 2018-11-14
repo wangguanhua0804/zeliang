@@ -24,4 +24,6 @@ public interface ConsumerMapper {
     Boolean insertConsumerRecord(ConsumerRecord consumerRecord);
 
     Integer deleteConsumerRecord(List<String> idList);
+
+    Integer updateConsumerRecord(ConsumerRecord consumerRecord);
 }

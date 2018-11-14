@@ -22,4 +22,6 @@ public interface ConsumerService {
     String insertConsumerRecord(ConsumerRecord consumerRecord);
 
     Integer deleteConsumerRecord(List<String> idList);
+
+    Boolean updateConsumerRecord(ConsumerRecord consumerRecord);
 }

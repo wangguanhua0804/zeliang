@@ -209,4 +209,28 @@
         </foreach>
     </update>
 
+    <update id="updateConsumerRecord" parameterType="com.wgh.springboot.domain.ConsumerRecord">
+        UPDATE consumer_record SET
+        <if test="name != null and name != ''">
+            name = #{name,jdbcType=VARCHAR},
+        </if>
+        <if test="mobile != null and mobile != ''">
+            mobile = #{mobile,jdbcType=VARCHAR},
+        </if>
+        <if test="idCard != null and idCard != ''">
+            idCard = #{idCard,jdbcType=VARCHAR},
+        </if>
+        <if test="symptom != null and symptom != ''">
+            symptom = #{symptom,jdbcType=VARCHAR},
+        </if>
+        <if test="medicine != null and medicine != ''">
+            medicine = #{medicine,jdbcType=VARCHAR},
+        </if>
+        <if test="money != null and money != ''">
+            money = #{money,jdbcType=VARCHAR},
+        </if>
+        lastUpdateTime=now()
+        where id=#{id};
+    </update>
+
 </mapper>

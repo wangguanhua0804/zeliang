@@ -132,5 +132,22 @@ public class ConsumerServiceImpl implements ConsumerService {
             return 0;
         }
     }
+
+    @Override
+    public Boolean updateConsumerRecord(ConsumerRecord consumerRecord) {
+        try {
+            if(consumerRecord==null||StringUtils.isEmpty(consumerRecord.getId())){
+                return false;
+            }
+            Integer count = consumerMapper.updateConsumerRecord(consumerRecord);
+            if (count == 1) {
+                return true;
+            }
+            return false;
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            return false;
+        }
+    }
 }
 

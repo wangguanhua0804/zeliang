@@ -85,6 +85,18 @@ public class ConsumerController extends BaseController {
         }
         return jsonResult;
     }
+    @RequestMapping("/updateConsumerRecord")
+    @ResponseBody
+    public JsonResult updateConsumerRecord(@RequestBody ConsumerRecord consumerRecord) {
+        JsonResult jsonResult = initJsonResult();
+        Boolean result = consumerService.updateConsumerRecord(consumerRecord);
+        if (!result) {
+            logger.info("/consumer/updateConsumerRecord : 修改流水失败   " + JSON.toJSONString(consumerRecord));
+            jsonResult.setRspCode("201");
+            jsonResult.setMsg("修改流水失败");
+        }
+        return jsonResult;
+    }
 
     @RequestMapping("/deleteConsumer")
     @ResponseBody
