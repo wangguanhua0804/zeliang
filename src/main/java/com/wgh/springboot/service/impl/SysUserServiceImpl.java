@@ -17,7 +17,7 @@ import java.util.UUID;
 
 @Service
 public class SysUserServiceImpl implements SysUserService {
-    @Autowired
+    @Autowired(required = false)
     private SysUserMapper sysUserMapper;
 
     @Override

@@ -18,7 +18,7 @@ import java.util.Map;
 @Service
 public class ConsumerServiceImpl implements ConsumerService {
     static final Logger logger = (Logger) LoggerFactory.getLogger(ConsumerServiceImpl.class);
-    @Autowired
+    @Autowired(required = false)
     private ConsumerMapper consumerMapper;
 
     @Override
