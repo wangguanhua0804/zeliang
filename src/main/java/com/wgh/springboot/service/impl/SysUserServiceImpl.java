@@ -17,7 +17,7 @@ import java.util.UUID;
 
 @Service
 public class SysUserServiceImpl implements SysUserService {
-    @Autowired(required = false)
+    @Autowired
     private SysUserMapper sysUserMapper;
 
     @Override
@@ -27,9 +27,9 @@ public class SysUserServiceImpl implements SysUserService {
         if (sysUser != null) {
             if (map.get("password").equals(sysUser.getPassword())) {
                 String  uuid = UUID.randomUUID().toString();
-                JedisUtils jedisUtils=new JedisUtils();
+               /* JedisUtils jedisUtils=new JedisUtils();
                 jedisUtils.setKeyValueWithTimeOut(sysUser.getUser(),uuid,60*60*24l);
-                jedisUtils.setKeyValueWithTimeOut(uuid,sysUser.getUser(),60*60*24l);
+                jedisUtils.setKeyValueWithTimeOut(uuid,sysUser.getUser(),60*60*24l);*/
                 sysUser.setToken(uuid);
                 SysRole sysRole=sysUserMapper.selectRoleById(sysUser.getId());
                 List<SysResource> sysResourceList=sysUserMapper.selectResourceByRoleId(sysRole.getId());
@@ -54,10 +54,10 @@ public class SysUserServiceImpl implements SysUserService {
     public JsonResult logout(Map<String, String> map) {
         JsonResult jsonResult = new JsonResult();
         String token=map.get("token");
-        JedisUtils jedisUtils = new JedisUtils();
+        /*JedisUtils jedisUtils = new JedisUtils();
         String userId = jedisUtils.getValueByKey(token);
         jedisUtils.delKey(userId);
-        jedisUtils.delKey(token);
+        jedisUtils.delKey(token);*/
         jsonResult.setRspCode("200");
         jsonResult.setMsg("成功退出");
         return jsonResult;

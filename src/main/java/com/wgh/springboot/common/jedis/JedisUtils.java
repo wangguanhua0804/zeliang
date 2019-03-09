@@ -15,7 +15,7 @@ public class JedisUtils {
     private static int TIMEOUT = 10 * 1000;
     private static String HOST="47.105.89.125";
     private static int PORT=6379;
-    private static String AUTH="";
+    private static String AUTH="wgh5449723.";
 
     private static JedisPool jedisPool = null;
 
